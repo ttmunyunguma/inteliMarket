@@ -76,6 +76,7 @@ public class ListDao {
     
     public List allProductsList(){
         
+        System.out.println("***************STAGE2 hibernate ListDAO********************");      //Debug purposes
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         List<Product> pList = session.createQuery("SELECT a1 FROM Product a1").list();

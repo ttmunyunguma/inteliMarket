@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jul 8, 2018 3:59:56 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 18, 2018 7:06:16 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.telmarket.entity.Product" table="product" catalog="TelMarket" optimistic-lock="version">
+    <class name="com.telmarket.intelimarket.entity.Product" table="product" catalog="TelMarket" optimistic-lock="version">
         <id name="proId" type="java.lang.Integer">
             <column name="pro_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="subCategory" class="com.telmarket.entity.SubCategory" fetch="select">
+        <many-to-one name="subCategory" class="com.telmarket.intelimarket.entity.SubCategory" fetch="select">
             <column name="sub_cat_id" not-null="true" />
         </many-to-one>
         <property name="proName" type="string">
@@ -30,13 +30,13 @@
             <key>
                 <column name="pro_id" not-null="true" />
             </key>
-            <one-to-many class="com.telmarket.entity.ProductOrder" />
+            <one-to-many class="com.telmarket.intelimarket.entity.ProductOrder" />
         </set>
         <set name="productOrderDetailses" table="product_order_details" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="pro_id" not-null="true" />
             </key>
-            <one-to-many class="com.telmarket.entity.ProductOrderDetails" />
+            <one-to-many class="com.telmarket.intelimarket.entity.ProductOrderDetails" />
         </set>
     </class>
 </hibernate-mapping>

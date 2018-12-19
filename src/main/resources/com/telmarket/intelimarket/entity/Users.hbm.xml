@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jul 8, 2018 3:59:56 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 18, 2018 7:06:16 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.telmarket.entity.Users" table="users" catalog="TelMarket" optimistic-lock="version">
+    <class name="com.telmarket.intelimarket.entity.Users" table="users" catalog="TelMarket" optimistic-lock="version">
         <id name="userId" type="java.lang.Integer">
             <column name="user_id" />
             <generator class="identity" />
@@ -21,19 +21,19 @@
             <column name="email" length="45" not-null="true" />
         </property>
         <property name="password" type="string">
-            <column name="password" length="45" not-null="true" />
+            <column name="password" length="200" not-null="true" />
         </property>
         <property name="regDate" type="date">
             <column name="reg_date" length="10" not-null="true" />
         </property>
         <property name="contactNo" type="string">
-            <column name="contact_no" length="45" not-null="true" />
+            <column name="contact_no" length="45" />
         </property>
         <set name="productOrders" table="product_order" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="user_id" not-null="true" />
             </key>
-            <one-to-many class="com.telmarket.entity.ProductOrder" />
+            <one-to-many class="com.telmarket.intelimarket.entity.ProductOrder" />
         </set>
     </class>
 </hibernate-mapping>

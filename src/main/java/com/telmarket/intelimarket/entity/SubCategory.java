@@ -1,5 +1,5 @@
 package com.telmarket.intelimarket.entity;
-// Generated Jul 8, 2018 3:59:47 PM by Hibernate Tools 4.3.1
+// Generated Dec 18, 2018 7:06:11 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;

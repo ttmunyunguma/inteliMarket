@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jul 8, 2018 3:59:56 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Dec 18, 2018 7:06:16 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.telmarket.entity.SubCategory" table="sub_category" catalog="TelMarket" optimistic-lock="version">
+    <class name="com.telmarket.intelimarket.entity.SubCategory" table="sub_category" catalog="TelMarket" optimistic-lock="version">
         <id name="subCatId" type="java.lang.Integer">
             <column name="sub_cat_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="category" class="com.telmarket.entity.Category" fetch="select">
+        <many-to-one name="category" class="com.telmarket.intelimarket.entity.Category" fetch="select">
             <column name="cat_id" not-null="true" />
         </many-to-one>
         <property name="subCatName" type="string">
@@ -21,7 +21,7 @@
             <key>
                 <column name="sub_cat_id" not-null="true" />
             </key>
-            <one-to-many class="com.telmarket.entity.Product" />
+            <one-to-many class="com.telmarket.intelimarket.entity.Product" />
         </set>
     </class>
 </hibernate-mapping>

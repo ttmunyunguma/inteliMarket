@@ -71,7 +71,7 @@ public class DisplayProductMB implements Serializable {
     }
     
     public List<Product> getAllProducts(){
-        
+        System.out.println("***************STAGE1 DISPLAY PRODUCT MB EXECUTED********************");        //Debug purposes
         List<Product> pList = new ListDao().allProductsList();
         return pList;
     }

@@ -1,5 +1,5 @@
 package com.telmarket.intelimarket.entity;
-// Generated Jul 8, 2018 3:59:47 PM by Hibernate Tools 4.3.1
+// Generated Dec 18, 2018 7:06:11 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,14 +26,13 @@ public class Users  implements java.io.Serializable {
     }
 
 	
-    public Users(int roleId, String firstName, String lastName, String email, String password, Date regDate, String contactNo) {
+    public Users(int roleId, String firstName, String lastName, String email, String password, Date regDate) {
         this.roleId = roleId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.regDate = regDate;
-        this.contactNo = contactNo;
     }
     public Users(int roleId, String firstName, String lastName, String email, String password, Date regDate, String contactNo, Set productOrders) {
        this.roleId = roleId;
@@ -60,23 +59,20 @@ public class Users  implements java.io.Serializable {
     public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
-
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
-
+    
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
-
+    
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    
     public String getEmail() {
         return this.email;
     }
@@ -89,8 +85,6 @@ public class Users  implements java.io.Serializable {
     }
     
     public void setPassword(String password) {
-//        EncryptField field = new EncryptField();
-//        this.password = field.encrypt(password);
         this.password = password;
     }
     public Date getRegDate() {
@@ -98,10 +92,7 @@ public class Users  implements java.io.Serializable {
     }
     
     public void setRegDate(Date regDate) {
-        Date dt = new Date();
-        regDate = dt;
         this.regDate = regDate;
-
     }
     public String getContactNo() {
         return this.contactNo;
