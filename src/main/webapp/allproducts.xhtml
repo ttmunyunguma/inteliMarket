@@ -908,15 +908,47 @@
                                 </div>
                             </div>
                             <div class="row illustration-v2 margin-bottom-30">
-                            
-                                *********FORM WILL BE HERE**************
-                                <ui:repeat value="#{displayProductMB.allProducts}" var="product">
-                                <div class="col-md-4">
-                                    
-                                </div>
-                                </ui:repeat>
-                            
-                                </div>
+                                <h:form id="form">
+                                    <ui:repeat value="#{displayProductMB.allProducts}" var="product">
+                                        <div class="col-md-4">
+                                            <div class="product-img product-img-brd">
+                                                <p:commandLink >
+                                                    <f:setPropertyActionListener value="#{product}" target="#{displayProductMB.selectedProduct}"/>
+                                                    <h:graphicImage name="#{product.proPic}" library="images" class="full-width img-responsive"/>
+                                                </p:commandLink>
+                                                <a class="product-review" href="products.xhtml">Quick review</a>
+                                                <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+                                            <div class="product-description product-description-brd margin-bottom-30">
+                                                <div class="overflow-h margin-bottom-5">
+                                                    <div class="pull-left">
+                                                        <h4 class="title-price"><h:link value="#{product.proName}" outcome="products.xhtml"/></h4>
+                                                        <span class="gender text-uppercase">
+                                                            <h:outputText value="#{product.subCategory.subCatName}"/>
+                                                        </span>
+                                                        <span class="gender">
+                                                            <h:outputText value="#{product.subCategory.category.catName}"/>
+                                                        </span>
+                                                    </div>
+                                                    <div class="product-price">
+                                                        <span class="title-price">
+                                                            <h:outputText value="$ #{product.proPrice}"/>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <ul class="list-inline product-ratings">
+                                                    <li><i class="rating-selected fa fa-star"></i></li>
+                                                    <li><i class="rating-selected fa fa-star"></i></li>
+                                                    <li><i class="rating-selected fa fa-star"></i></li>
+                                                    <li><i class="rating fa fa-star"></i></li>
+                                                    <li><i class="rating fa fa-star"></i></li>
+                                                    <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </ui:repeat>
+                                </h:form>
+                            </div>
                         </div><!--/end filter results-->
 
                         <div class="text-center">

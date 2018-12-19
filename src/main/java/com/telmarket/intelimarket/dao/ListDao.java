@@ -80,8 +80,9 @@ public class ListDao {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         List<Product> pList = session.createQuery("SELECT a1 FROM Product a1").list();
+        System.out.println("***************STAGE3 Query created********************");      //Debug purposes
         pList.toString();
-        session.close();
+//        session.close();
         return pList;
     }
     
