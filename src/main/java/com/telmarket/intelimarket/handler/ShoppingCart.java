@@ -86,11 +86,11 @@ public class ShoppingCart implements Serializable {
     }
     
     public String addToCart(Product p){
+        updateCart();
         if(cart.size() > 0){
             for(Item i : cart){
                 if(i.getP().getProId().equals(p.getProId())){
                     i.setQuantity(i.getQuantity() + 1);
-//                    return "cart";
                 }
             }
         }

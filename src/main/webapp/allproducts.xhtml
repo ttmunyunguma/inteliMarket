@@ -119,7 +119,7 @@
                         <!-- Shopping Cart -->
                         <div class="shop-badge badge-icons pull-right">
                             <h:outputLink value="checkout.xhtml"><i class="fa fa-shopping-cart"/></h:outputLink>
-                            <span class="badge badge-sea rounded-x"><h:outputText value="${shoppingCart.cartSize}" id="cartIcon"/></span>
+                            <span class="badge badge-sea rounded-x"><h:outputText value="#{shoppingCart.cartSize}" id="cartIcon"/></span>
                             <div class="badge-open">
                                 <ul class="list-unstyled mCustomScrollbar" data-mcs-theme="minimal-dark">
                                     <p:dataList value="#{shoppingCart.cart}" var="cart">
@@ -137,7 +137,9 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <h:outputLink value="checkout.xhtml" class="btn-u btn-brd btn-brd-hover btn-u-sea-shop btn-block">View Cart</h:outputLink>
+                                            <h:form>
+                                            <p:commandLink value="Update Cart" action="#{shoppingCart.updateCart()}" ajax="false" class="btn-u btn-brd btn-brd-hover btn-u-sea-shop btn-block"/>
+                                            </h:form>
                                         </div>
                                         <div class="col-xs-6">
                                             <h:outputLink value="checkout.xhtml" class="btn-u btn-u-sea-shop btn-block">Checkout</h:outputLink>
@@ -646,7 +648,7 @@
 
                         <div class="filter-results">
                             
-                            
+                            <!--
                             
                             <div class="row illustration-v2 margin-bottom-30">
                                 <div class="col-md-4">
@@ -820,7 +822,7 @@
                                     </div>
                                 </div>
                             </div>
-
+-->
                             <div class="row illustration-v2">
                                 <div class="col-md-4">
                                     <div class="product-img product-img-brd">
@@ -907,17 +909,29 @@
                                     </div>
                                 </div>
                             </div>
+                           
                             <div class="row illustration-v2 margin-bottom-30">
                                 <h:form id="form">
-                                    <ui:repeat value="#{displayProductMB.allProducts}" var="product">
-                                        <div class="col-md-4">
+                                   
+                                    <p:dataGrid var="product" value="#{displayProductMB.allProducts}" columns="3" layout="grid"
+                                                rows="12" paginator="true" paginatorPosition="bottom" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+                                                rowsPerPageTemplate="4,7,12">
+                                        
                                             <div class="product-img product-img-brd">
-                                                <p:commandLink >
+                                                <p:commandLink update=":form:pro" oncomplete="PF('productOP').show()"  title="Quick review">
                                                     <f:setPropertyActionListener value="#{product}" target="#{displayProductMB.selectedProduct}"/>
                                                     <h:graphicImage name="#{product.proPic}" library="images" class="full-width img-responsive"/>
                                                 </p:commandLink>
-                                                <a class="product-review" href="products.xhtml">Quick review</a>
-                                                <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                <p:commandLink class="product-review" update=":form:pro" oncomplete="PF('productOP').show()">
+                                                    Quick review
+                                                    <f:setPropertyActionListener value="#{product}" target="#{displayProductMB.selectedProduct}"/>
+                                                </p:commandLink>
+                                                <p:commandLink class="add-to-cart" action="#{shoppingCart.addToCart(product)}">
+                                                    <i class="fa fa-shopping-cart"></i>Add to cart
+                                                    <f:setPropertyActionListener target="#{cartHandlerMB.productId}" value="#{product.proId}"/>
+                                                    <f:setPropertyActionListener target="#{cartHandlerMB.productName}" value="#{product.proName}"/>
+                                                    <f:setPropertyActionListener target="#{cartHandlerMB.price}" value="#{product.proPrice}"/>
+                                                </p:commandLink>
                                             </div>
                                             <div class="product-description product-description-brd margin-bottom-30">
                                                 <div class="overflow-h margin-bottom-5">
@@ -932,7 +946,7 @@
                                                     </div>
                                                     <div class="product-price">
                                                         <span class="title-price">
-                                                            <h:outputText value="$ #{product.proPrice}"/>
+                                                            <h:outputText value="$#{product.proPrice}"/>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -945,8 +959,32 @@
                                                     <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
                                                 </ul>
                                             </div>
-                                        </div>
-                                    </ui:repeat>
+                                    </p:dataGrid>
+                                    
+                                    <p:sidebar widgetVar="productOP" baseZIndex="10000">
+                                        <p:outputPanel id="pro" style="text-align:center;">
+                                            <p:panelGrid  columns="2" rendered="true" >
+                                                <f:facet name="header">
+                                                    <p:graphicImage name="#{displayProductMB.selectedProduct.proPic}"/>
+                                                </f:facet>
+                                                <p:outputLabel value="Name:" />
+                                                <h:outputText value="#{displayProductMB.selectedProduct.proName}" />
+                                                
+                                                <p:outputLabel value="Price:" />
+                                                <h:outputText value="$#{displayProductMB.selectedProduct.proPrice}" />
+                                                
+                                                <p:outputLabel value="Quantity in stock" />
+                                                <h:outputText value="#{displayProductMB.selectedProduct.proQty}" />
+                                                <f:facet name="footer">
+                                                    <p:commandButton value="Add To Cart" action="#{shoppingCart.addToCart(product)}">
+                                                        <f:setPropertyActionListener target="#{cartHandlerMB.productId}" value="#{product.proId}"/>
+                                                        <f:setPropertyActionListener target="#{cartHandlerMB.productName}" value="#{product.proName}"/>
+                                                        <f:setPropertyActionListener target="#{cartHandlerMB.price}" value="#{product.proPrice}"/>
+                                                    </p:commandButton>
+                                                </f:facet>
+                                            </p:panelGrid>
+                                        </p:outputPanel>
+                                    </p:sidebar>                                   
                                 </h:form>
                             </div>
                         </div><!--/end filter results-->

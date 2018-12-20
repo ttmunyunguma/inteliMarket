@@ -20,7 +20,6 @@ package com.telmarket.intelimarket.handler;
 
 import com.telmarket.intelimarket.dao.ListDao;
 import com.telmarket.intelimarket.entity.Product;
-import com.telmarket.intelimarket.entity.SubCategory;
 import javax.inject.Named;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
@@ -71,7 +70,6 @@ public class DisplayProductMB implements Serializable {
     }
     
     public List<Product> getAllProducts(){
-        System.out.println("***************STAGE1 DISPLAY PRODUCT MB EXECUTED********************");        //Debug purposes
         List<Product> pList = new ListDao().allProductsList();
         return pList;
     }
