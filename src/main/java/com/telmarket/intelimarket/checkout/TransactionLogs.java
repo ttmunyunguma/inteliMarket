@@ -18,9 +18,13 @@
  */
 package com.telmarket.intelimarket.checkout;
 
+import com.telmarket.intelimarket.dao.AddDao;
+import com.telmarket.intelimarket.entity.TransactionLog;
+import com.telmarket.intelimarket.security.EncryptField;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -30,10 +34,37 @@ import java.io.Serializable;
 @SessionScoped
 public class TransactionLogs implements Serializable {
 
+    TransactionLog transaction = new TransactionLog();
+    EncryptField field = new EncryptField();
+    CheckOut value = new CheckOut();
+    
     /**
      * Creates a new instance of TransactionLogs
      */
     public TransactionLogs() {
     }
     
+    public void createLog() throws Exception{
+        
+        transaction.setFullName(value.getFullName());
+        transaction.setAddressLine1(value.getAddLine1());
+        transaction.setAddressLine2(value.getAddLine2());
+        transaction.setCity(value.getCity());
+        transaction.setState(value.getState());
+        transaction.setCountry(value.getCountry());
+        transaction.setPhone(value.getPhone());
+        transaction.setCardName(value.getCardHolderName());
+        transaction.setPan(field.encrypt(value.getCardNumber()));
+        transaction.setExpirationDate(value.getExpDate());
+        transaction.setAmount(value.getTotal());
+        transaction.setTransactionDateAndTime(transactionTime());
+        
+        AddDao.commitLog(transaction);
+    }
+    
+    public String transactionTime(){
+    
+        Date date = new Date();
+        return String.valueOf(date);
+    }
 }

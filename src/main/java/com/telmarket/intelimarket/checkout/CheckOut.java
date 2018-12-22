@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import org.jpos.iso.ISOMsg;
+import org.jpos.iso.ISOMsg;
 
 /**
  *
@@ -66,8 +66,8 @@ public class CheckOut implements Serializable {
     private String transmissionDateAndTime;
     List<String> countryOptions;
 
-/*
-public String send(){
+
+public String send() throws Exception{
         
         TransactionLogs log = new TransactionLogs();
         SendPayment pay = new SendPayment();
@@ -80,7 +80,7 @@ public String send(){
             Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
         }
         finally{
-            log.createLog(this);
+            log.createLog();
         }
         
         ISOMsg incoming = pay.getResp();
@@ -111,7 +111,7 @@ public String send(){
         }
         else
             return "/responce/error_noresponce.xhtml";  
-    }*/
+    }
 
     public String getTotal() {
         return total;

@@ -21,6 +21,7 @@ package com.telmarket.intelimarket.dao;
 import com.telmarket.intelimarket.entity.Category;
 import com.telmarket.intelimarket.entity.Product;
 import com.telmarket.intelimarket.entity.SubCategory;
+import com.telmarket.intelimarket.entity.TransactionLog;
 import com.telmarket.intelimarket.entity.Users;
 import com.telmarket.intelimarket.util.HibernateUtil;
 import org.hibernate.HibernateException;
@@ -91,5 +92,18 @@ public class AddDao {
         } catch (HibernateException e) {
         }
         return false;
+    }
+    
+    public static void commitLog(TransactionLog log){
+        try {
+            SessionFactory factory = HibernateUtil.getSessionFactory();
+            Session session = factory.openSession();
+            session.beginTransaction();
+            session.save(log);
+            session.getTransaction().commit();
+            session.close();
+            
+        } catch (HibernateException e) {
+        }
     }
 }
