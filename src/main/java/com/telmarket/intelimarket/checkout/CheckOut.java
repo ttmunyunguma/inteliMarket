@@ -19,12 +19,13 @@
 package com.telmarket.intelimarket.checkout;
 
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.bean.ManagedBean;
 import org.jpos.iso.ISOMsg;
 
 /**
@@ -33,6 +34,7 @@ import org.jpos.iso.ISOMsg;
  */
 @Named(value = "checkOut")
 @SessionScoped
+@ManagedBean
 public class CheckOut implements Serializable {
 
     /**
@@ -53,6 +55,7 @@ public class CheckOut implements Serializable {
     private String firstName;
     private String lastName;
     private String fullName;
+    private String email;
     private String addLine1;
     private String addLine2;
     private String city;
@@ -240,5 +243,12 @@ public String send() throws Exception{
     public void setCountryOptions(List<String> countryOptions) {
         this.countryOptions = countryOptions;
     }
+    
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
