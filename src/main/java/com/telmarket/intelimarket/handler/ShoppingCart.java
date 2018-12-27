@@ -72,6 +72,7 @@ public class ShoppingCart implements Serializable {
     }
 
     public void setCartSize(int cartSize) {
+        
         this.cartSize = cartSize;
     }
 
@@ -86,7 +87,6 @@ public class ShoppingCart implements Serializable {
     }
     
     public String addToCart(Product p){
-        updateCart();
         if(cart.size() > 0){
             for(Item i : cart){
                 if(i.getP().getProId().equals(p.getProId())){
@@ -98,7 +98,9 @@ public class ShoppingCart implements Serializable {
         i.setQuantity(1);
         i.setP(p);
         cart.add(i);
-        return null;
+        cartSize = cart.size();
+        System.out.println("************************Cart size "+cartSize);
+        return null;//"checkout.xhtml?faces-redirect=true";
     }
     
     public void updateCart(){

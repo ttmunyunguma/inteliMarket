@@ -58,12 +58,12 @@
             <artifactId>hibernate-search-orm</artifactId>
             <version>5.11.0.Final</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search-elasticsearch -->
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search-elasticsearch 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-search-elasticsearch</artifactId>
             <version>5.11.0.Final</version>
-        </dependency>
+        </dependency>-->
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
