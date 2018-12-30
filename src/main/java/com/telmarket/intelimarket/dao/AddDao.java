@@ -34,12 +34,13 @@ import org.hibernate.SessionFactory;
  */
 public class AddDao {
     
+    static SessionFactory factory = HibernateUtil.getSessionFactory();
+    
     public AddDao(){
     }
     
     public boolean addCategory(Category category){
         try{
-            SessionFactory factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();
             session.beginTransaction();
             session.save(category);
@@ -54,7 +55,6 @@ public class AddDao {
     
     public boolean addSubCategory(SubCategory sub_cat){
         try {
-            SessionFactory factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();
             session.beginTransaction();
             session.save(sub_cat);
@@ -68,7 +68,6 @@ public class AddDao {
     
     public boolean addProduct(Product product){
         try {
-            SessionFactory factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();
             session.beginTransaction();
             session.save(product);
@@ -82,7 +81,6 @@ public class AddDao {
     
     public boolean registerUser(Users user){
         try {
-            SessionFactory factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();
             session.beginTransaction();
             session.save(user);
@@ -96,7 +94,6 @@ public class AddDao {
     
     public static void commitLog(TransactionLog log){
         try {
-            SessionFactory factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();
             session.beginTransaction();
             session.save(log);

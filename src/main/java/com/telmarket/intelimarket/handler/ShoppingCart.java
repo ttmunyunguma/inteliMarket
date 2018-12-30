@@ -42,7 +42,6 @@ public class ShoppingCart implements Serializable {
     private List<Item> cart = new ArrayList<>();
     private double total;
     int cartSize;
-    String item = "item";
     
     public ShoppingCart() {
     }
@@ -75,16 +74,6 @@ public class ShoppingCart implements Serializable {
         
         this.cartSize = cartSize;
     }
-
-    public String getItem() {
-        if(cartSize > 1)
-            item = "items";
-        return item;
-    }
-
-    public void setItem(String item) {
-        this.item = item;
-    }
     
     public String addToCart(Product p){
         if(cart.size() > 0){
@@ -99,8 +88,7 @@ public class ShoppingCart implements Serializable {
         i.setP(p);
         cart.add(i);
         cartSize = cart.size();
-        System.out.println("************************Cart size "+cartSize);
-        return null;//"checkout.xhtml?faces-redirect=true";
+        return null;
     }
     
     public void updateCart(){

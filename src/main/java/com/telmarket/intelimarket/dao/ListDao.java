@@ -27,6 +27,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.search.FullTextSession;
+import org.hibernate.search.Search;
+import org.hibernate.search.query.dsl.QueryBuilder;
 
 /**
  *
@@ -34,9 +37,10 @@ import org.hibernate.SessionFactory;
  */
 public class ListDao {
     
+    SessionFactory factory = HibernateUtil.getSessionFactory();
+        
     public List catList(){
         
-        SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         List<Category> cList = session.createQuery("SELECT a1.catName FROM Category a1").list();
         cList.toString();
@@ -46,7 +50,6 @@ public class ListDao {
     
     public List subcatList(String name){
         
-        SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         List<Category> scList = session.createQuery("SELECT a1.subCatName FROM SubCategory a1 WHERE a1.category.catId IN (SELECT a.catId FROM Category a WHERE lower(a.catName)= '"+name.toLowerCase()+"')").list();
         scList.toString();
@@ -56,7 +59,6 @@ public class ListDao {
     
     public List<Category> catListByName(String name){
         
-        SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         List<Category> cList = session.createQuery("SELECT a1 FROM Category a1 WHERE lower(catName) = '"+name.toLowerCase()+"'").list();
         cList.toString();
@@ -66,7 +68,6 @@ public class ListDao {
     
     public List<SubCategory> subcatListByName(String name){
         
-        SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         List<SubCategory> cList = session.createQuery("SELECT a1 FROM SubCategory a1 WHERE lower(subCatName) = '"+name.toLowerCase()+"'").list();
         cList.toString();
@@ -76,7 +77,6 @@ public class ListDao {
     
     public List allProductsList(){
         
-        SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         List<Product> pList = session.createQuery("SELECT a1 FROM Product a1").list();
         pList.toString();
@@ -86,7 +86,6 @@ public class ListDao {
     
     public List<Product> productListBySubCat(String subcat){
         
-        SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         List<Product> pList = session.createQuery("SELECT a1 FROM Product a1 WHERE subCategory = '"+("SELECT a1 FROM SubCategory a1 WHERE subCatName = '"+subcat+"'")+"'").list();
         pList.toString();
@@ -94,12 +93,30 @@ public class ListDao {
         return pList;
     }
     
+    public List<Product> searchProductList(String keyword){
+        System.out.println("***************************LIST DAO SEARCH PRODUCT HAS BEEN CALLED***************");
+        List result;
+        try (Session session = factory.openSession()) {
+            FullTextSession fullTextSession = Search.getFullTextSession(session);
+            QueryBuilder queryBuilder = fullTextSession.getSearchFactory()
+                    .buildQueryBuilder()
+                    .forEntity(Product.class).get();
+            org.apache.lucene.search.Query luceneQuery = queryBuilder.simpleQueryString()
+                    .onFields("subCategory","proName","proPrice","proDesc")
+                    .matching(keyword).createQuery();
+            org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery);
+            result = fullTextQuery.list();
+            result.toString();
+        }
+        
+        return result;
+    }
+    
     public boolean checkUser(String email, String password){
         try {
-            SessionFactory factory = HibernateUtil.getSessionFactory();
             Session session = factory.openSession();
             session.beginTransaction();
-            Query query = session.createQuery("from Users where email=:email and password=:password");
+            org.hibernate.Query query = session.createQuery("from Users where email=:email and password=:password");
 //            query.setString("firstName", firstName);
             query.setString("email", email);
             query.setString("password", password);
@@ -110,4 +127,5 @@ public class ListDao {
         }
         return false;
     }
+    
 }

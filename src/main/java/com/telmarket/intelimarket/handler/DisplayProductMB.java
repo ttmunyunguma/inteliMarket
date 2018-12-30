@@ -41,6 +41,7 @@ public class DisplayProductMB implements Serializable {
     Product product = new Product();
     private Product selectedProduct;
     private String subcatname;
+    private String queryProduct = "samsung";
     
     public DisplayProductMB() {
     }
@@ -78,5 +79,11 @@ public class DisplayProductMB implements Serializable {
     
         List<Product> pList = new ListDao().productListBySubCat(subcatname);
         return pList;    
+    }
+    
+    public List<Product> getSearchedProducts(){
+        System.out.println("***************DISPLAY PRODUCT MB HAS BEEN CALLED*************************");
+        List<Product> pList = new ListDao().searchProductList(queryProduct);
+        return pList;
     }
 }
