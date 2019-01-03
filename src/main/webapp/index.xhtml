@@ -44,9 +44,9 @@
 	<!-- CSS Customization -->
 	<link rel="stylesheet" href="assets/css/custom.css"/>
     </h:head>
-<h:body class="header-fixed">
+    <h:body class="header-fixed">
         <div class="wrapper">
-            
+
             <!--=== Header v5 ===-->
             <div class="header-v5 header-static">
                 <!-- Topbar v3 -->
@@ -349,7 +349,7 @@
                 <!-- End Navbar -->
             </div>
             <!--=== End Header v5 ===-->
-            
+
             <!--=== Slider ===-->
             <div class="tp-banner-container">
                 <div class="tp-banner">
@@ -629,8 +629,8 @@
                 <div class="heading heading-v1 margin-bottom-20">
                     <h2>Featured products</h2>
                     <p>Some of the best tech in the industry currently trending. We offer only the best in Virtual Reality
-                    gear to the most basic tools for building your projects from scratch. You can trust us, we are the best.
-                    We are TelOne after all!</p>
+                        gear to the most basic tools for building your projects from scratch. You can trust us, we are the best.
+                        We are TelOne after all!</p>
                 </div>
 
                 <!--=== Illustration v2 ===-->
@@ -639,175 +639,79 @@
                         <a class="owl-btn prev rounded-x"><i class="fa fa-angle-left"></i></a>
                         <a class="owl-btn next rounded-x"><i class="fa fa-angle-right"></i></a>
                     </div>
+                    <h:form id="form">
+                        <ul class="list-inline owl-slider">
+                            <ui:repeat value="#{displayProductMB.randomProducts}" var="product">
+                                <li class="item">
+                                    <div class="product-img">
+                                        <p:commandLink update=":form:pro" oncomplete="PF('productOP').show()"  title="Quick review">
+                                            <f:setPropertyActionListener value="#{product}" target="#{displayProductMB.selectedProduct}"/>
+                                            <h:graphicImage name="#{product.proPic}" library="images" class="full-width img-responsive"/>
+                                        </p:commandLink>
+                                        <p:commandLink class="product-review" update=":form:pro" oncomplete="PF('productOP').show()">
+                                            <f:setPropertyActionListener value="#{product}" target="#{displayProductMB.selectedProduct}"/>
+                                            Quick review
+                                        </p:commandLink>
+                                        <p:commandLink class="add-to-cart" action="#{shoppingCart.addToCart(product)}" update=":shopping_cart_form:cartIcon">
+                                            <i class="fa fa-shopping-cart"></i>Add to cart
+                                            <f:setPropertyActionListener target="#{cartHandlerMB.productId}" value="#{product.proId}"/>
+                                            <f:setPropertyActionListener target="#{cartHandlerMB.productName}" value="#{product.proName}"/>
+                                            <f:setPropertyActionListener target="#{cartHandlerMB.price}" value="#{product.proPrice}"/> 
+                                        </p:commandLink>
+                                        <div class="shop-rgba-red rgba-banner">MOST WANTED</div>
+                                    </div>
+                                    <div class="product-description product-description-brd">
+                                        <div class="overflow-h margin-bottom-5">
+                                            <div class="pull-left">
+                                                <h4 class="title-price"><h:link value="#{product.proName}" outcome="products.xhtml"/></h4>
+                                                <span class="gender text-uppercase">
+                                                    <h:outputText value="#{product.subCategory.subCatName}"/>
+                                                </span>
+                                                <span class="gender">
+                                                    <h:outputText value="#{product.subCategory.category.catName}"/>
+                                                </span>
+                                            </div>
+                                            <div class="product-price">
+                                                <span class="title-price">
+                                                    <h:outputText value="$#{product.proPrice}"/>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <ul class="list-inline product-ratings">
+                                            <li><i class="rating-selected fa fa-star"></i></li>
+                                            <li><i class="rating-selected fa fa-star"></i></li>
+                                            <li><i class="rating-selected fa fa-star"></i></li>
+                                            <li><i class="rating-selected fa fa-star"></i></li>
+                                            <li><i class="rating-selected fa fa-star"></i></li>
+                                            <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                        <p:sidebar widgetVar="productOP" baseZIndex="10000">
+                            <p:outputPanel id="pro" style="text-align:center;">
+                                <p:panelGrid  columns="2">
 
-                    <ul class="list-inline owl-slider">
-                        <li class="item">
-                            <div class="product-img">
-                                <a href="products.xhtml"><img class="full-width img-responsive" src="assets/img/blog/09.jpg" alt=""/></a>
-                                <a class="product-review" href="products.xhtml">Quick review</a>
-                                <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                <div class="shop-rgba-red rgba-banner">MOST WANTED</div>
-                            </div>
-                            <div class="product-description product-description-brd">
-                                <div class="overflow-h margin-bottom-5">
-                                    <div class="pull-left">
-                                        <h4 class="title-price"><a href="products.xhtml">Machine Learning</a></h4>
-                                        <span class="gender text-uppercase">Deep Learnig</span>
-                                        <span class="gender">Computer Vision</span>
-                                    </div>
-                                    <div class="product-price">
-                                        <span class="title-price">$495.00</span>
-                                    </div>
-                                </div>
-                                <ul class="list-inline product-ratings">
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="product-img">
-                                <a href="products.xhtml"><img class="full-width img-responsive" src="assets/img/blog/26.jpg" alt=""/></a>
-                                <a class="product-review" href="products.xhtml">Quick review</a>
-                                <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </div>
-                            <div class="product-description product-description-brd">
-                                <div class="overflow-h margin-bottom-5">
-                                    <div class="pull-left">
-                                        <h4 class="title-price"><a href="products.xhtml">Pied Piper Coin</a></h4>
-                                        <span class="gender text-uppercase">PPC</span>
-                                        <span class="gender">Crypto Currency</span>
-                                    </div>
-                                    <div class="product-price">
-                                        <span class="title-price">$160.00</span>
-                                        <span class="title-price line-through">$95.00</span>
-                                    </div>
-                                </div>
-                                <ul class="list-inline product-ratings">
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating fa fa-star"></i></li>
-                                    <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="product-img">
-                                <a href="products.xhtml"><img class="full-width img-responsive" src="assets/img/blog/11.jpg" alt=""/></a>
-                                <a class="product-review" href="products.xhtml">Quick review</a>
-                                <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </div>
-                            <div class="product-description product-description-brd">
-                                <div class="overflow-h margin-bottom-5">
-                                    <div class="pull-left">
-                                        <h4 class="title-price"><a href="products.xhtml">Gaming Console</a></h4>
-                                        <span class="gender text-uppercase">XBOX</span>
-                                        <span class="gender">PRO</span>
-                                    </div>
-                                    <div class="product-price">
-                                        <span class="title-price">$295.00</span>
-                                    </div>
-                                </div>
-                                <ul class="list-inline product-ratings">
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating fa fa-star"></i></li>
-                                    <li><i class="rating fa fa-star"></i></li>
-                                    <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="product-img">
-                                <a href="shop-ui-inner.html"><img class="full-width img-responsive" src="assets/img/blog/12.jpg" alt=""/></a>
-                                <a class="product-review" href="shop-ui-inner.html">Quick review</a>
-                                <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                <div class="shop-rgba-dark-green rgba-banner">OPTIMIZED</div>
-                            </div>
-                            <div class="product-description product-description-brd">
-                                <div class="overflow-h margin-bottom-5">
-                                    <div class="pull-left">
-                                        <h4 class="title-price"><a href="shop-ui-inner.html">Intel</a></h4>
-                                        <span class="gender text-uppercase">CPU</span>
-                                        <span class="gender">Core i7 Processor</span>
-                                    </div>
-                                    <div class="product-price">
-                                        <span class="title-price">$395.00</span>
-                                    </div>
-                                </div>
-                                <ul class="list-inline product-ratings">
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating fa fa-star"></i></li>
-                                    <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="product-img">
-                                <a href="products.xhtml"><img class="full-width img-responsive" src="assets/img/blog/10.jpg" alt=""/></a>
-                                <a class="product-review" href="products.xhtml">Quick review</a>
-                                <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            </div>
-                            <div class="product-description product-description-brd">
-                                <div class="overflow-h margin-bottom-5">
-                                    <div class="pull-left">
-                                        <h4 class="title-price"><a href="products.xhtml">Sony</a></h4>
-                                        <span class="gender text-uppercase">Camera</span>
-                                        <span class="gender">Optima</span>
-                                    </div>
-                                    <div class="product-price">
-                                        <span class="title-price">$695.00</span>
-                                    </div>
-                                </div>
-                                <ul class="list-inline product-ratings">
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating fa fa-star"></i></li>
-                                    <li><i class="rating fa fa-star"></i></li>
-                                    <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="item">
-                            <div class="product-img">
-                                <a href="products.xhtml"><img class="full-width img-responsive" src="assets/img/blog/19.jpg" alt=""/></a>
-                                <a class="product-review" href="products.xhtml">Quick review</a>
-                                <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                <div class="shop-rgba-red rgba-banner">TRY ME</div>
-                            </div>
-                            <div class="product-description product-description-brd">
-                                <div class="overflow-h margin-bottom-5">
-                                    <div class="pull-left">
-                                        <h4 class="title-price"><a href="products.xhtml">Apple</a></h4>
-                                        <span class="gender text-uppercase">Imac</span>
-                                        <span class="gender">Ipad</span>
-                                    </div>
-                                    <div class="product-price">
-                                        <span class="title-price">$795.00</span>
-                                    </div>
-                                </div>
-                                <ul class="list-inline product-ratings">
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating-selected fa fa-star"></i></li>
-                                    <li><i class="rating fa fa-star"></i></li>
-                                    <li><i class="rating fa fa-star"></i></li>
-                                    <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
+                                    <p:outputLabel value="Name:" />
+                                    <h:outputText value="#{displayProductMB.selectedProduct.proName}" />
+
+                                    <p:outputLabel value="Price:" />
+                                    <h:outputText value="$#{displayProductMB.selectedProduct.proPrice}" />
+
+                                    <p:outputLabel value="Quantity in stock" />
+                                    <h:outputText value="#{displayProductMB.selectedProduct.proQty}" />
+                                    <f:facet name="footer">
+                                        <p:commandButton value="Add To Cart" action="#{shoppingCart.addToCart(displayProductMB.selectedProduct)}" update=":shopping_cart_form:cartIcon">
+                                            <f:setPropertyActionListener target="#{cartHandlerMB.productId}" value="#{product.proId}"/>
+                                            <f:setPropertyActionListener target="#{cartHandlerMB.productName}" value="#{product.proName}"/>
+                                            <f:setPropertyActionListener target="#{cartHandlerMB.price}" value="#{product.proPrice}"/>
+                                        </p:commandButton> 
+                                    </f:facet>
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:sidebar>
+                        </h:form>
                 </div>
                 <!--=== End Illustration v2 ===-->
 
@@ -864,117 +768,72 @@
 
                 <!--=== Illustration v2 ===-->
                 <div class="row illustration-v2">
-                    <div class="col-md-3 col-sm-6 md-margin-bottom-30">
-                        <div class="product-img">
-                            <a href="products.xhtml"><img class="full-width img-responsive" src="assets/img/blog/25.jpg" alt=""/></a>
-                            <a class="product-review" href="products.xhtml">Quick review</a>
-                            <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                        </div>
-                        <div class="product-description product-description-brd">
-                            <div class="overflow-h margin-bottom-5">
-                                <div class="pull-left">
-                                    <h4 class="title-price"><a href="products.xhtml">Smart Watch</a></h4>
-                                    <span class="gender text-uppercase">Samsung</span>
-                                    <span class="gender">Pro</span>
+                    <h:form id="form_latest">
+                        <ui:repeat value="#{displayProductMB.randomFourProducts}" var="product">
+                            <div class="col-md-3 col-sm-6 md-margin-bottom-30">
+                                <div class="product-img">
+                                    <p:commandLink update=":form_latest:pro" oncomplete="PF('productOP').show()"  title="Quick review">
+                                        <f:setPropertyActionListener value="#{product}" target="#{displayProductMB.selectedProduct}"/>
+                                        <h:graphicImage name="#{product.proPic}" library="images" class="full-width img-responsive"/>
+                                    </p:commandLink>
+                                    <p:commandLink class="product-review" update=":form:pro" oncomplete="PF('productOP').show()">
+                                        <f:setPropertyActionListener value="#{product}" target="#{displayProductMB.selectedProduct}"/>
+                                        Quick review
+                                    </p:commandLink>
+                                    <p:commandLink class="add-to-cart" action="#{shoppingCart.addToCart(product)}" update=":shopping_cart_form:cartIcon">
+                                        <i class="fa fa-shopping-cart"></i>Add to cart
+                                        <f:setPropertyActionListener target="#{cartHandlerMB.productId}" value="#{product.proId}"/>
+                                        <f:setPropertyActionListener target="#{cartHandlerMB.productName}" value="#{product.proName}"/>
+                                        <f:setPropertyActionListener target="#{cartHandlerMB.price}" value="#{product.proPrice}"/> 
+                                    </p:commandLink>
+                                    <div class="shop-rgba-dark-green rgba-banner">New</div>
                                 </div>
-                                <div class="product-price">
-                                    <span class="title-price">$195.00</span>
-                                </div>
-                            </div>
-                            <ul class="list-inline product-ratings">
-                                <li><i class="rating-selected fa fa-star"></i></li>
-                                <li><i class="rating-selected fa fa-star"></i></li>
-                                <li><i class="rating-selected fa fa-star"></i></li>
-                                <li><i class="rating-selected fa fa-star"></i></li>
-                                <li><i class="rating fa fa-star"></i></li>
-                                <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 md-margin-bottom-30">
-                        <div class="product-img">
-                            <a href="products.xhtml"><img class="full-width img-responsive" src="assets/img/blog/09.jpg" alt=""/></a>
-                            <a class="product-review" href="products.xhtml">Quick review</a>
-                            <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                        </div>
-                        <div class="product-description product-description-brd">
-                            <div class="overflow-h margin-bottom-5">
-                                <div class="pull-left">
-                                    <h4 class="title-price"><a href="products.xhtml">Tech</a></h4>
-                                    <span class="gender text-uppercase">Tech</span>
-                                    <span class="gender">Tech</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="title-price">$60.00</span>
-                                    <span class="title-price line-through">$95.00</span>
+                                <div class="product-description product-description-brd">
+                                    <div class="overflow-h margin-bottom-5">
+                                        <div class="pull-left">
+                                            <h4 class="title-price"><h:link value="#{product.proName}" outcome="products.xhtml"/></h4>
+                                            <span class="gender text-uppercase">
+                                                <h:outputText value="#{product.subCategory.subCatName}"/>
+                                            </span>
+                                            <span class="gender">
+                                                <h:outputText value="#{product.subCategory.category.catName}"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <ul class="list-inline product-ratings">
+                                        <li><i class="rating-selected fa fa-star"></i></li>
+                                        <li><i class="rating-selected fa fa-star"></i></li>
+                                        <li><i class="rating-selected fa fa-star"></i></li>
+                                        <li><i class="rating fa fa-star"></i></li>
+                                        <li><i class="rating fa fa-star"></i></li>
+                                        <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
+                                    </ul>
                                 </div>
                             </div>
-                            <ul class="list-inline product-ratings">
-                                <li><i class="rating-selected fa fa-star"></i></li>
-                                <li><i class="rating-selected fa fa-star"></i></li>
-                                <li><i class="rating-selected fa fa-star"></i></li>
-                                <li><i class="rating fa fa-star"></i></li>
-                                <li><i class="rating fa fa-star"></i></li>
-                                <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 md-margin-bottom-30">
-                        <div class="product-img">
-                            <a href="products.xhtml"><img class="full-width img-responsive" src="assets/img/blog/10.jpg" alt=""/></a>
-                            <a class="product-review" href="products.xhtml">Quick review</a>
-                            <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            <div class="shop-rgba-red rgba-banner">Out of stock</div>
-                        </div>
-                        <div class="product-description product-description-brd">
-                            <div class="overflow-h margin-bottom-5">
-                                <div class="pull-left">
-                                    <h4 class="title-price"><a href="products.xhtml">Tech</a></h4>
-                                    <span class="gender text-uppercase">Tech</span>
-                                    <span class="gender">Tech</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="title-price">$295.00</span>
-                                </div>
-                            </div>
-                            <ul class="list-inline product-ratings">
-                                <li><i class="rating-selected fa fa-star"></i></li>
-                                <li><i class="rating-selected fa fa-star"></i></li>
-                                <li><i class="rating-selected fa fa-star"></i></li>
-                                <li><i class="rating fa fa-star"></i></li>
-                                <li><i class="rating fa fa-star"></i></li>
-                                <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 md-margin-bottom-30">
-                        <div class="product-img">
-                            <a href="products.xhtml"><img class="full-width img-responsive" src="assets/img/blog/11.jpg" alt=""/></a>
-                            <a class="product-review" href="products.xhtml">Quick review</a>
-                            <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            <div class="shop-rgba-dark-green rgba-banner">New</div>
-                        </div>
-                        <div class="product-description product-description-brd">
-                            <div class="overflow-h margin-bottom-5">
-                                <div class="pull-left">
-                                    <h4 class="title-price"><a href="products.xhtml">Tech</a></h4>
-                                    <span class="gender text-uppercase">Tech</span>
-                                    <span class="gender">Tech</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="title-price">$95.00</span>
-                                </div>
-                            </div>
-                            <ul class="list-inline product-ratings">
-                                <li><i class="rating-selected fa fa-star"></i></li>
-                                <li><i class="rating-selected fa fa-star"></i></li>
-                                <li><i class="rating-selected fa fa-star"></i></li>
-                                <li><i class="rating fa fa-star"></i></li>
-                                <li><i class="rating fa fa-star"></i></li>
-                                <li class="like-icon"><a data-original-title="Add to wishlist" data-toggle="tooltip" data-placement="left" class="tooltips" href="#"><i class="fa fa-heart"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
+                        </ui:repeat>
+                        <p:sidebar widgetVar="productOP" baseZIndex="10000">
+                            <p:outputPanel id="pro" style="text-align:center;">
+                                <p:panelGrid  columns="2">
+
+                                    <p:outputLabel value="Name:" />
+                                    <h:outputText value="#{displayProductMB.selectedProduct.proName}" />
+
+                                    <p:outputLabel value="Price:" />
+                                    <h:outputText value="$#{displayProductMB.selectedProduct.proPrice}" />
+
+                                    <p:outputLabel value="Quantity in stock" />
+                                    <h:outputText value="#{displayProductMB.selectedProduct.proQty}" />
+                                    <f:facet name="footer">
+                                        <p:commandButton value="Add To Cart" action="#{shoppingCart.addToCart(displayProductMB.selectedProduct)}" update=":shopping_cart_form:cartIcon">
+                                            <f:setPropertyActionListener target="#{cartHandlerMB.productId}" value="#{product.proId}"/>
+                                            <f:setPropertyActionListener target="#{cartHandlerMB.productName}" value="#{product.proName}"/>
+                                            <f:setPropertyActionListener target="#{cartHandlerMB.price}" value="#{product.proPrice}"/>
+                                        </p:commandButton> 
+                                    </f:facet>
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:sidebar>
+                    </h:form>
                 </div>
                 <!--=== End Illustration v2 ===-->
             </div>
@@ -1039,7 +898,7 @@
             <!--=== End Twitter-Block ===-->
 
             <div class="container">
-		<!--=== Product Service ===-->
+                <!--=== Product Service ===-->
                 <div class="row margin-bottom-60">
                     <div class="col-md-4 product-service md-margin-bottom-30">
                         <div class="product-service-heading">
@@ -1072,9 +931,9 @@
                         </div>
                     </div>
                 </div><!--/end row-->
-		<!--=== End Product Service ===-->
+                <!--=== End Product Service ===-->
 
-		<!--=== Illustration v4 ===-->
+                <!--=== Illustration v4 ===-->
                 <!--
                 <div class="row illustration-v4 margin-bottom-40">
                     <div class="col-md-4">
@@ -1196,7 +1055,7 @@
                     </div>
                 </div> -->
                 <!--/end row-->
-		<!--=== End Illustration v4 ===-->
+                <!--=== End Illustration v4 ===-->
             </div><!--/end container-->
 
             <!--=== Collection Banner ===-->
@@ -1205,7 +1064,7 @@
                     <div class="col-md-7 md-margin-bottom-50">
                         <h2>Swagg collection</h2>
                         <p>We are not only fussy about the latest technology trends, we also have the swaang <br/> No one in town looks as smart as we do</p><br/>
-                        <a href="#" class="btn-u btn-brd btn-brd-hover btn-u-light">Shop Now</a>
+                        <a href="allproducts.xhtml" class="btn-u btn-brd btn-brd-hover btn-u-light">Shop Now</a>
                     </div>
                     <div class="col-md-5">
                         <div class="overflow-h">
@@ -1291,7 +1150,7 @@
                 </div><!--/end container-->
             </div>
             <!--=== End Shop Suvbscribe ===-->
-    
+
             <!--=== Footer v4 ===-->
             <div class="footer-v4">
                 <div class="footer">
@@ -1446,8 +1305,8 @@
                 </div><!--/copyright-->
             </div>
             <!--=== End Footer v4 ===-->
-    </div>
-<!-- JS Global Compulsory -->
+        </div>
+        <!-- JS Global Compulsory -->
         <script src="assets/plugins/jquery/jquery.min.js"></script>
         <script src="assets/plugins/jquery/jquery-migrate.min.js"></script>
         <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>

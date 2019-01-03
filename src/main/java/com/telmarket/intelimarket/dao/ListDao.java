@@ -22,14 +22,14 @@ import com.telmarket.intelimarket.entity.Category;
 import com.telmarket.intelimarket.entity.Product;
 import com.telmarket.intelimarket.entity.SubCategory;
 import com.telmarket.intelimarket.util.HibernateUtil;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.search.FullTextSession;
-import org.hibernate.search.Search;
-import org.hibernate.search.query.dsl.QueryBuilder;
 
 /**
  *
@@ -94,22 +94,38 @@ public class ListDao {
     }
     
     public List<Product> searchProductList(String keyword){
-        System.out.println("***************************LIST DAO SEARCH PRODUCT HAS BEEN CALLED***************");
-        List result;
-        try (Session session = factory.openSession()) {
-            FullTextSession fullTextSession = Search.getFullTextSession(session);
-            QueryBuilder queryBuilder = fullTextSession.getSearchFactory()
-                    .buildQueryBuilder()
-                    .forEntity(Product.class).get();
-            org.apache.lucene.search.Query luceneQuery = queryBuilder.simpleQueryString()
-                    .onFields("subCategory","proName","proPrice","proDesc")
-                    .matching(keyword).createQuery();
-            org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery);
-            result = fullTextQuery.list();
-            result.toString();
-        }
         
-        return result;
+        return null;
+    }
+    
+    public List<Product> findRandomSix(){
+        
+        Set<Product> randomItems = new HashSet<>();
+        Session session = factory.openSession();
+        int min = session.createQuery("select min (i.proId) from Product i", Integer.class).getSingleResult();
+        int max = session.createQuery("select max (i.proId) from Product i", Integer.class).getSingleResult();
+        while (randomItems.size() < 6) {
+            int id = new Random().nextInt((max - min) + 1) + min;
+            Product item = session.find(Product.class, id);
+            if (item != null)
+                randomItems.add(item);
+        }
+        return new ArrayList<>(randomItems);
+    }
+    
+    public List<Product> findRandomFour(){
+        
+        Set<Product> randomItems = new HashSet<>();
+        Session session = factory.openSession();
+        int min = session.createQuery("select min (i.proId) from Product i", Integer.class).getSingleResult();
+        int max = session.createQuery("select max (i.proId) from Product i", Integer.class).getSingleResult();
+        while (randomItems.size() < 4) {
+            int id = new Random().nextInt((max - min) + 1) + min;
+            Product item = session.find(Product.class, id);
+            if (item != null)
+                randomItems.add(item);
+        }
+        return new ArrayList<>(randomItems);
     }
     
     public boolean checkUser(String email, String password){
@@ -121,7 +137,6 @@ public class ListDao {
             query.setString("email", email);
             query.setString("password", password);
             List dataList = query.list();
-//            System.out.println("2*************"+dataList.toString()+"****************");   //debug
             return dataList.size() == 1;
         } catch (HibernateException e) {
         }
