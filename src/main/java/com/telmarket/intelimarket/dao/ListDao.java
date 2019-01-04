@@ -94,8 +94,13 @@ public class ListDao {
     }
     
     public List<Product> searchProductList(String keyword){
+        Session session = factory.openSession();
+        List<Product> result = session.createQuery("SELECT i FROM Product i WHERE LOWER(i.proName) LIKE :name OR LOWER(i.proDesc) LIKE :description ORDER BY i.proName")
+                                      .setParameter("name", "%"+keyword.toLowerCase()+"%")
+                                      .setParameter("description", "%"+keyword.toLowerCase()+"%")
+                                      .list();
         
-        return null;
+        return result;
     }
     
     public List<Product> findRandomSix(){

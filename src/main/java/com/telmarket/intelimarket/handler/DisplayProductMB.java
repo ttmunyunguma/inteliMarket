@@ -18,12 +18,14 @@
  */
 package com.telmarket.intelimarket.handler;
 
+import com.telmarket.intelimarket.Store.SearchProduct;
 import com.telmarket.intelimarket.dao.ListDao;
 import com.telmarket.intelimarket.entity.Product;
 import javax.inject.Named;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ManagedBean;
 
 /**
@@ -41,11 +43,26 @@ public class DisplayProductMB implements Serializable {
     Product product = new Product();
     private Product selectedProduct;
     private String subcatname;
-    private String queryProduct;
+    private int searchResultsSize;
+    
+    @ManagedProperty(value="#{searchProduct}")
+    private SearchProduct queryProduct;
     
     public DisplayProductMB() {
     }
 
+    public int getSearchResultsSize() {
+        return searchResultsSize;
+    }
+
+    public SearchProduct getQueryProduct() {
+        return queryProduct;
+    }
+
+    public void setQueryProduct(SearchProduct queryProduct) {
+        this.queryProduct = queryProduct;
+    }
+    
     public Product getProduct() {
         return product;
     }
@@ -82,7 +99,8 @@ public class DisplayProductMB implements Serializable {
     }
     
     public List<Product> getSearchedProducts(){
-        List<Product> pList = new ListDao().searchProductList(queryProduct);
+        List<Product> pList = new ListDao().searchProductList(queryProduct.getKeyword());
+        searchResultsSize = pList.size();
         return pList;
     }
     

@@ -54,7 +54,10 @@
                 <div class="topbar-v3">
                     <div class="search-open">
                         <div class="container">
-                            <input type="text" class="form-control" placeholder="Search"/>
+                            <h:form class="search-pannel">
+                                <p:inputText class="form-control" a:placeholder="Search..." value="#{searchProduct.keyword}" />
+                                <p:commandButton action="#{searchProduct.searchedResults()}" icon="fa fa-search-minus fa fa-search-plus"/>
+                            </h:form>
                             <div class="search-close"><i class="icon-close"></i></div>
                         </div>
                     </div>

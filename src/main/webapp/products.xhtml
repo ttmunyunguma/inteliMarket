@@ -62,7 +62,10 @@
                 <div class="topbar-v3">
                     <div class="search-open">
                         <div class="container">
-                            <input type="text" class="form-control" placeholder="Search"/>
+                            <h:form class="search-pannel">
+                                <p:inputText class="form-control" a:placeholder="Search..." value="#{searchProduct.keyword}" />
+                                <p:commandButton action="#{searchProduct.searchedResults()}" icon="fa fa-search-minus fa fa-search-plus"/>
+                            </h:form>
                             <div class="search-close"><i class="icon-close"></i></div>
                         </div>
                     </div>
@@ -343,8 +346,8 @@
                                 <!-- Master Slider -->
                                 <div class="master-slider ms-skin-default" id="masterslider">
                                     <div class="ms-slide">
-                                        <img class="ms-brd" src="assets/img/blank.gif" data-src="assets/img/blog/28.jpg" alt="lorem ipsum dolor sit"/>
-                                        <img class="ms-thumb" src="assets/img/blog/28.jpg" alt="thumb"/>
+                                        <h:graphicImage name="#{displayProductMB.selectedProduct.proPic}" library="images" class="ms-brd"/>
+                                        <h:graphicImage name="#{displayProductMB.selectedProduct.proPic}" library="images" class="ms-thumb"/>
                                     </div>
                                     <div class="ms-slide">
                                         <img src="assets/img/blank.gif" data-src="assets/img/blog/29.jpg" alt="lorem ipsum dolor sit"/>
@@ -361,7 +364,7 @@
 
                         <div class="col-md-6">
                             <div class="shop-product-heading">
-                                <h2>Smart Watch</h2>
+                                <h2><h:outputText value="#{displayProductMB.selectedProduct.proName}" /></h2>
                                 <ul class="list-inline shop-product-social">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -381,11 +384,11 @@
                                 </li>
                             </ul><!--/end shop product ratings-->
 
-                            <p>Integer <strong>dapibus ut elit</strong> non volutpat. Integer auctor purus a lectus suscipit fermentum. Vivamus lobortis nec erat consectetur elementum.</p><br/>
+                            <p><h:outputText value="#{displayProductMB.selectedProduct.proDesc}" /></p><br/>
 
                             <ul class="list-inline shop-product-prices margin-bottom-30">
-                                <li class="shop-red">$57.00</li>
-                                <li class="line-through">$70.00</li>
+                                <li class="shop-red"><h:outputText value="$#{displayProductMB.selectedProduct.proPrice}" /></li>
+                                <li class="line-through"><h:outputText value="$#{displayProductMB.selectedProduct.proPrice + 70}" /></li>
                                 <li><small class="shop-bg-red time-day-left">4 days left</small></li>
                             </ul><!--/end shop product prices-->
 
@@ -432,7 +435,11 @@
                                     <input type='text' class="quantity-field" name='qty' value="1" id='qty'/>
                                     <button type='button' class="quantity-button" name='add' onclick='javascript: document.getElementById("qty").value++;' value='+'>+</button>
                                 </form>
-                                <button type="button" class="btn-u btn-u-sea-shop btn-u-lg">Add to Cart</button>
+                                <p:commandButton value="Add To Cart" action="#{shoppingCart.addToCart(displayProductMB.selectedProduct)}" update=":shopping_cart_form:cartIcon" class="btn-u btn-u-sea-shop btn-u-lg">
+                                    <f:setPropertyActionListener target="#{cartHandlerMB.productId}" value="#{product.proId}"/>
+                                    <f:setPropertyActionListener target="#{cartHandlerMB.productName}" value="#{product.proName}"/>
+                                    <f:setPropertyActionListener target="#{cartHandlerMB.price}" value="#{product.proPrice}"/>
+                                </p:commandButton>
                             </div><!--/end product quantity-->
 
                             <ul class="list-inline add-to-wishlist add-to-wishlist-brd">

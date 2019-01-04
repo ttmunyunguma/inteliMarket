@@ -54,7 +54,10 @@
                 <div class="topbar-v3">
                     <div class="search-open">
                         <div class="container">
-                            <input type="text" class="form-control" placeholder="Search"/>
+                            <h:form class="search-pannel">
+                                <p:inputText class="form-control" a:placeholder="Search..." value="#{searchProduct.keyword}" />
+                                <p:commandButton action="#{searchProduct.searchedResults()}" icon="fa fa-search-minus fa fa-search-plus"/>
+                            </h:form>
                             <div class="search-close"><i class="icon-close"></i></div>
                         </div>
                     </div>
@@ -672,7 +675,11 @@
                                         <div class="product-description product-description-brd margin-bottom-30">
                                             <div class="overflow-h margin-bottom-5">
                                                 <div class="pull-left">
-                                                    <h4 class="title-price"><h:link value="#{product.proName}" outcome="products.xhtml"/></h4>
+                                                    <h4 class="title-price">
+                                                        <p:commandLink value="#{product.proName}" action="#{searchProduct.clickedProduct()}">
+                                                            <f:setPropertyActionListener value="#{product}" target="#{displayProductMB.selectedProduct}"/>
+                                                        </p:commandLink>
+                                                    </h4>
                                                     <span class="gender text-uppercase">
                                                         <h:outputText value="#{product.subCategory.subCatName}"/>
                                                     </span>
@@ -721,16 +728,6 @@
                                 </h:form>
                             </div>
                         </div><!--/end filter results-->
-
-                        <!--<div class="text-center">
-                            <ul class="pagination pagination-v2">
-                                <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                                <li><a href="#">1</a></li>
-                                <li class="active"><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                            </ul>
-                        </div>/end pagination-->
                     </div>
                 </div><!--/end row-->
             </div><!--/end container-->
