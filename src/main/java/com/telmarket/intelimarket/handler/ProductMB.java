@@ -137,7 +137,6 @@ public class ProductMB implements Serializable {
                 String dbPath = servletContext.getRealPath("/");
                 InputStream inputStream = file.getInputstream();
                 String path = dbPath + "resources/images/" + file.getFileName();
-                System.out.println("***************"+ path +"*******************");
                 File destFile = new File(path);
                 if(!destFile.exists())
                     FileUtils.copyInputStreamToFile(inputStream, destFile);

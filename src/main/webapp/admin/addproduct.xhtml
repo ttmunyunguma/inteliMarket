@@ -31,7 +31,7 @@
                 <h:outputLabel value="Select Image"/>
                 <p:fileUpload value="#{productMB.file}" mode="simple"/>
                 <h:outputLabel value="Product Description"/>
-                <p:inputText value="#{productMB.product.proDesc}"/>
+                <p:inputTextarea value="#{productMB.product.proDesc}"/>
                 <p:commandButton value="Save" action="#{productMB.addProduct()}" update="msg" ajax="false"/>
             </p:panelGrid>
         </h:form>

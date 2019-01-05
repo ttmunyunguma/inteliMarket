@@ -21,7 +21,7 @@
             <column name="pro_qty" not-null="true" />
         </property>
         <property name="proDesc" type="string">
-            <column name="pro_desc" length="200" not-null="true" />
+            <column name="pro_desc" length="2000" not-null="true" />
         </property>
         <property name="proPic" type="string">
             <column name="pro_pic" length="100" not-null="true" />
