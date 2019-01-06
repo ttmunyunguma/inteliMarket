@@ -22,17 +22,11 @@ import com.telmarket.intelimarket.entity.Category;
 import com.telmarket.intelimarket.entity.Product;
 import com.telmarket.intelimarket.entity.SubCategory;
 import com.telmarket.intelimarket.util.HibernateUtil;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
-import java.util.Set;
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
-import javax.persistence.FetchType;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -56,7 +50,7 @@ public class ListDao {
         Session session = factory.openSession();
         List<Category> scList = session.createQuery("SELECT a1.subCatName FROM SubCategory a1 WHERE a1.category.catId IN (SELECT a.catId FROM Category a WHERE lower(a.catName)= '"+name.toLowerCase()+"')").list();
         scList.toString();
-        session.close();
+//        session.close();
         return scList;
     }
     
@@ -106,39 +100,51 @@ public class ListDao {
         return result;
     }
     
-    @ElementCollection(fetch = FetchType.EAGER)
-    public List<Product> findRandomSix(){
-        
-        Set<Product> randomItems = new HashSet<>();
-        Session session = factory.openSession();
-        int min = session.createQuery("select min (i.proId) from Product i", Integer.class).getSingleResult();
-        int max = session.createQuery("select max (i.proId) from Product i", Integer.class).getSingleResult();
-        while (randomItems.size() < 6) {
-            int id = new Random().nextInt((max - min) + 1) + min;
-            Product item = session.find(Product.class, id);
-            if (item != null)
-                randomItems.add(item);
-        }
-//        session.close();
-        return new ArrayList<>(randomItems);
-    }
+//    public List<Product> findRandomSix(){
+//        
+//        Set<Product> randomItems = new HashSet<>();
+//        Session session = factory.openSession();
+//        int min = session.createQuery("select min (i.proId) from Product i", Integer.class).getSingleResult();
+//        int max = session.createQuery("select max (i.proId) from Product i", Integer.class).getSingleResult();
+//        while (randomItems.size() < 6) {
+//            int id = new Random().nextInt((max - min) + 1) + min;
+//            Product item = session.find(Product.class, id);
+//            if (item != null)
+//                randomItems.add(item);
+//        }
+////        session.close();
+//        return new ArrayList<>(randomItems);
+//    }
     
-    @ElementCollection(fetch = FetchType.EAGER)
     public List<Product> findRandomFour(){
         
-        Set<Product> randomItems = new HashSet<>();
         Session session = factory.openSession();
-        int min = session.createQuery("select min (i.proId) from Product i", Integer.class).getSingleResult();
-        int max = session.createQuery("select max (i.proId) from Product i", Integer.class).getSingleResult();
-        while (randomItems.size() < 4) {
-            int id = new Random().nextInt((max - min) + 1) + min;
-            Product item = session.find(Product.class, id);
-            if (item != null)
-                randomItems.add(item);
-        }
-//        session.close();
-        return new ArrayList<>(randomItems);
+        
+        Query query = session.createQuery("from Product p");
+        query.setFirstResult(13);
+        query.setMaxResults(4);
+        List<Product> result = query.list();
+        result.toString();
+        return result;
     }
+      
+    public List<Product> findRandomSix(){
+        
+        Session session = factory.openSession();
+        
+        Query query = session.createQuery("from Product p");
+        query.setFirstResult(5);
+        query.setMaxResults(6);
+        List<Product> result = query.list();
+        result.toString();
+        return result;
+    }
+    
+    
+    
+    
+    
+    
     
     public boolean checkUser(String email, String password){
         try {
