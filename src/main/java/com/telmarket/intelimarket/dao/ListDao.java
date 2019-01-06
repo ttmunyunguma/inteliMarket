@@ -27,6 +27,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.FetchType;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -103,6 +106,7 @@ public class ListDao {
         return result;
     }
     
+    @ElementCollection(fetch = FetchType.EAGER)
     public List<Product> findRandomSix(){
         
         Set<Product> randomItems = new HashSet<>();
@@ -115,9 +119,11 @@ public class ListDao {
             if (item != null)
                 randomItems.add(item);
         }
+//        session.close();
         return new ArrayList<>(randomItems);
     }
     
+    @ElementCollection(fetch = FetchType.EAGER)
     public List<Product> findRandomFour(){
         
         Set<Product> randomItems = new HashSet<>();
@@ -130,6 +136,7 @@ public class ListDao {
             if (item != null)
                 randomItems.add(item);
         }
+//        session.close();
         return new ArrayList<>(randomItems);
     }
     

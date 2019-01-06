@@ -21,12 +21,6 @@
             <artifactId>hibernate-commons-annotations</artifactId>
             <version>5.1.0.Final</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager 
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.4.0.Final</version>
-        </dependency>-->
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -45,13 +39,13 @@
             <artifactId>hibernate-jpa-2.1-api</artifactId>
             <version>1.0.2.Final</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate -->
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate 
         <dependency> 
             <groupId>org.hibernate</groupId> 
             <artifactId>hibernate-agroal</artifactId> 
             <version>5.4.0.Final</version> 
             <type>pom</type> 
-        </dependency>
+        </dependency>-->
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
@@ -59,12 +53,6 @@
             <version>8.0.13</version>
         </dependency>
         
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <version>7.0</version>
-            <scope>provided</scope>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/javax/javaee-api -->
         <dependency>
             <groupId>javax</groupId>
@@ -173,7 +161,7 @@
                                 <artifactItem>
                                     <groupId>javax</groupId>
                                     <artifactId>javaee-endorsed-api</artifactId>
-                                    <version>7.0</version>
+                                    <version>8.0</version>
                                     <type>jar</type>
                                 </artifactItem>
                             </artifactItems>
