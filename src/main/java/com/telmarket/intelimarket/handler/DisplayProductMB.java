@@ -44,11 +44,20 @@ public class DisplayProductMB implements Serializable {
     private Product selectedProduct;
     private String subcatname;
     private int searchResultsSize;
+    private int allProductsSize;
     
     @ManagedProperty(value="#{searchProduct}")
     private SearchProduct queryProduct;
     
     public DisplayProductMB() {
+    }
+
+    public int getAllProductsSize() {
+        return allProductsSize;
+    }
+
+    public void setAllProductsSize(int allProductsSize) {
+        this.allProductsSize = allProductsSize;
     }
 
     public int getSearchResultsSize() {
@@ -89,6 +98,7 @@ public class DisplayProductMB implements Serializable {
     
     public List<Product> getAllProducts(){
         List<Product> pList = new ListDao().allProductsList();
+        allProductsSize = pList.size();
         return pList;
     }
     

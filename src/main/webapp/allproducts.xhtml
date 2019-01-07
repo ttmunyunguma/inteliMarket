@@ -157,127 +157,46 @@
                         <div class="collapse navbar-collapse navbar-responsive-collapse">
                             <!-- Nav Menu -->
                             <ul class="nav navbar-nav">
-
                                 <!-- Store -->
                                 <li class="dropdown mega-menu-fullwidth">
-                                    <a href="allproducts.xhtml" class="dropdown-toggle">
-                                        IN STORE
-                                    </a>
+                                    <p:link outcome="allproducts.xhtml" class="dropdown-toggle">CATALOGUE</p:link>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <div class="mega-menu-content">
                                                 <div class="container">
-                                                    <!--
-                                                    <ul class="list-unstyled style-list">
-                                                        <ui:repeat var="category" value="{categoryMB.listCategories()}">
-                                                            <h:commandLink value="{category}"
-                                                        </ui:repeat>
-                                                    </ul>
-                                                    -->
                                                     <div class="row">
                                                         <div class="col-md-2 col-sm-6">
                                                             <h3 class="mega-menu-heading">mobile</h3>
-                                                            <ul class="list-unstyled style-list">
-                                                                <li>
-                                                                    <h:outputLink value="subcategory.xhtml" >
-                                                                        <h:outputText value="Samsung"/>
-                                                                    </h:outputLink>    
-                                                                </li>
-                                                                <li>
-                                                                    <h:outputLink value="subcategory.xhtml" >
-                                                                        <h:outputText value="Sony"/>
-                                                                    </h:outputLink> 
-                                                                </li>
-                                                                <li>
-                                                                    <h:outputLink value="subcategory.xhtml" >
-                                                                        <h:outputText value="HTC"/>
-                                                                    </h:outputLink>     
-                                                                </li>
-                                                                <li>
-                                                                    <h:outputLink value="subcategory.xhtml" >
-                                                                        <h:outputText value="Hauwaii"/>
-                                                                    </h:outputLink> 
-                                                                </li>
-                                                                <li>
-                                                                    <h:outputLink value="subcategory.xhtml" >
-                                                                        <h:outputText value="Iphone"/>
-                                                                    </h:outputLink>  
-                                                                </li>
-                                                                <li>
-                                                                    <h:outputLink value="subcategory.xhtml" >
-                                                                        <h:outputText value="Ipads"/>
-                                                                    </h:outputLink>  
-                                                                </li>
-                                                                <li>
-                                                                    <h:outputLink value="subcategory.xhtml" >
-                                                                        <h:outputText value="Tablets"/>
-                                                                    </h:outputLink>    
-                                                                </li>
-                                                            </ul>
                                                         </div>
                                                         <div class="col-md-2 col-sm-6">
                                                             <h3 class="mega-menu-heading">computers</h3>
-                                                            <ul class="list-unstyled style-list">
-                                                                <li><a href="subcategory.xhtml">HP</a></li>
-                                                                <li><a href="#">Lenovo</a></li>
-                                                                <li><a href="#">Acer</a></li>
-                                                                <li><a href="#">Apple</a></li>
-                                                                <li><a href="#">Laptops</a> <span class="label label-danger-shop">New</span></li>
-                                                            </ul>
                                                         </div>
-
                                                         <div class="col-md-2 col-sm-6">
                                                             <h3 class="mega-menu-heading">Accessories</h3>
-                                                            <ul class="list-unstyled style-list">
-                                                                <li><a href="#">Intel processors</a></li>
-                                                                <li><a href="#">nvidia gpu's</a></li>
-                                                                <li><a href="#">HP</a></li>
-                                                                <li><a href="#">Asus</a></li>
-                                                            </ul>
-                                                            <h3 class="mega-menu-heading">servers</h3>
-                                                            <ul class="list-unstyled style-list">
-                                                                <li><a href="#">Hardware</a></li>
-                                                                <li><a href="#">Cloud</a> <span class="label label-danger-shop">GPU powered</span></li>
-                                                                <li><a href="#">DNR</a></li>
-                                                            </ul>
+                                                            <h3 class="mega-menu-heading">
+                                                                servers<span class="label label-danger-shop">GPU powered</span>
+                                                            </h3>
                                                         </div>
                                                         <div class="col-md-2 col-sm-6">
                                                             <h3 class="mega-menu-heading">Technology</h3>
-                                                            <ul class="list-unstyled style-list">
-                                                                <li><a href="#">VR Gear</a></li>
-                                                                <li><a href="#">Smart watch</a></li>
-                                                                <li><a href="#">Gaming</a></li>
-                                                            </ul>
                                                         </div>
-
                                                         <div class="col-md-2 col-sm-6">
                                                             <h3 class="mega-menu-heading">Software</h3>
-                                                            <ul class="list-unstyled style-list">
-                                                                <li><a href="#">Artificial Intelligence</a></li>
-                                                                <li><a href="#">Blockchain Technology</a> <span class="label label-danger-shop">Etherium</span></li>
-                                                                <li><a href="#">Web Optimization</a></li>
-                                                            </ul>
                                                         </div>
-
                                                         <div class="col-md-2 col-sm-6">
                                                             <h3 class="mega-menu-heading">Professional Services</h3>
-                                                            <ul class="list-unstyled style-list">
-                                                                <li><a href="#">Java</a></li>
-                                                                <li><a href="#">Python R</a></li>
-                                                                <li><a href="#">Data Engineering</a><span class="label label-danger-shop">Certified</span></li>
-                                                            </ul>
                                                         </div>
-                                                    </div> <!--/end row-->
-                                                </div><!--/end container-->
-                                            </div><!--/end mega menu content-->
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </li>
-                                    </ul><!--/end dropdown-menu-->
+                                    </ul>
                                 </li>
                                 <!-- End Store -->
-
+                                
                                 <!-- Promotion -->
                                 <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+                                    <a href="allproducts.xhtml" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
                                         Promotions
                                     </a>
                                     <ul class="dropdown-menu">
@@ -302,7 +221,7 @@
 
                                 <!-- Gifts -->
                                 <li class="dropdown mega-menu-fullwidth">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+                                    <a href="allproducts.xhtml" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
                                         Gifts
                                     </a>
                                     <ul class="dropdown-menu">
@@ -316,13 +235,13 @@
                                                             <button type="button" class="btn-u btn-u-dark">Read More</button>
                                                         </div>
                                                         <div class="col-md-3 col-sm-4 col-xs-4 md-margin-bottom-30">
-                                                            <a href="#"><img class="product-offers img-responsive" src="assets/img/blog/01.jpg" alt=""/></a>
+                                                            <a href="allproducts.xhtml"><h:graphicImage class="product-offers img-responsive" value="assets/img/blog/01.jpg" alt="gift1"/></a>
                                                         </div>
                                                         <div class="col-md-3 col-sm-4 col-xs-4 sm-margin-bottom-30">
-                                                            <a href="#"><img class="product-offers img-responsive" src="assets/img/blog/02.jpg" alt=""/></a>
+                                                            <a href="allproducts.xhtml"><h:graphicImage class="product-offers img-responsive" value="assets/img/blog/02.jpg" alt="gift2"/></a>
                                                         </div>
                                                         <div class="col-md-3 col-sm-4 col-xs-4">
-                                                            <a href="#"><img class="product-offers img-responsive" src="assets/img/blog/03.jpg" alt=""/></a>
+                                                            <a href="allproducts.xhtml"><h:graphicImage class="product-offers img-responsive" value="assets/img/blog/03.jpg" alt="gift3"/></a>
                                                         </div>
                                                     </div><!--/end row-->
                                                 </div><!--/end container-->
@@ -334,7 +253,7 @@
 
                                 <!-- Data -->
                                 <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" data-delay="1000">
+                                    <a href="allproducts.xhtml" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" data-delay="1000">
                                         Data
                                     </a>
                                     <ul class="dropdown-menu">
@@ -344,7 +263,6 @@
                                     </ul>
                                 </li>
                                 <!-- End Data -->
-
                             </ul>
                             <!-- End Nav Menu -->
                         </div>
@@ -362,7 +280,7 @@
                     <ul class="breadcrumb-v4-in">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="">Products</a></li>
-                        <li class="active">Product Filter</li>
+                        <li class="active">Store Catalog</li>
                     </ul>
                 </div><!--/end container-->
             </div>
@@ -373,64 +291,6 @@
                 <div class="row">
                     <div class="col-md-3 filter-by-block md-margin-bottom-60">
                         <h1>Filter By</h1>
-                        <div class="panel-group" id="accordion">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h2 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                            Brands
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                    </h2>
-                                </div>
-                                <div id="collapseOne" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <ul class="list-unstyled checkbox-list">
-                                            <li>
-                                                <label class="checkbox">
-                                                    <input type="checkbox" name="checkbox" checked="" />
-                                                    <i></i>
-                                                    Calvin Klein
-                                                    <small><a href="#">(23)</a></small>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="checkbox">
-                                                    <input type="checkbox" name="checkbox" checked="" />
-                                                    <i></i>
-                                                    Gucci
-                                                    <small><a href="#">(4)</a></small>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="checkbox">
-                                                    <input type="checkbox" name="checkbox" />
-                                                    <i></i>
-                                                    Adidas
-                                                    <small><a href="#">(11)</a></small>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="checkbox">
-                                                    <input type="checkbox" name="checkbox" />
-                                                    <i></i>
-                                                    Puma
-                                                    <small><a href="#">(3)</a></small>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="checkbox">
-                                                    <input type="checkbox" name="checkbox" />
-                                                    <i></i>
-                                                    Zara
-                                                    <small><a href="#">(87)</a></small>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!--/end panel group-->
 
                         <div class="panel-group" id="accordion-v2">
                             <div class="panel panel-default">
@@ -475,57 +335,6 @@
                             </div>
                         </div><!--/end panel group-->
 
-                        <div class="panel-group" id="accordion-v3">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h2 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion-v3" href="#collapseThree">
-                                            Size
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                    </h2>
-                                </div>
-                                <div id="collapseThree" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <ul class="list-unstyled checkbox-list">
-                                            <li>
-                                                <label class="checkbox">
-                                                    <input type="checkbox" name="checkbox" />
-                                                    <i></i>
-                                                    S
-                                                    <small><a href="#">(23)</a></small>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="checkbox">
-                                                    <input type="checkbox" name="checkbox" checked="" />
-                                                    <i></i>
-                                                    M
-                                                    <small><a href="#">(4)</a></small>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="checkbox">
-                                                    <input type="checkbox" name="checkbox" />
-                                                    <i></i>
-                                                    L
-                                                    <small><a href="#">(11)</a></small>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label class="checkbox">
-                                                    <input type="checkbox" name="checkbox" />
-                                                    <i></i>
-                                                    XL
-                                                    <small><a href="#">(3)</a></small>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!--/end panel group-->
-
                         <div class="panel-group" id="accordion-v4">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -543,32 +352,6 @@
                                             <span class="slider-snap-value-lower"></span>
                                             <span class="slider-snap-value-upper"></span>
                                         </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!--/end panel group-->
-
-                        <div class="panel-group" id="accordion-v5">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h2 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion-v5" href="#collapseFive">
-                                            Color
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                    </h2>
-                                </div>
-                                <div id="collapseFive" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <ul class="list-inline product-color-list">
-                                            <li><a href="#"><img src="assets/img/colors/01.jpg" alt=""/></a></li>
-                                            <li><a href="#"><img src="assets/img/colors/02.jpg" alt=""/></a></li>
-                                            <li><a href="#"><img src="assets/img/colors/03.jpg" alt=""/></a></li>
-                                            <li><a href="#"><img src="assets/img/colors/04.jpg" alt=""/></a></li>
-                                            <li><a href="#"><img src="assets/img/colors/05.jpg" alt=""/></a></li>
-                                            <li><a href="#"><img src="assets/img/colors/06.jpg" alt=""/></a></li>
-                                            <li><a href="#"><img src="assets/img/colors/07.jpg" alt=""/></a></li>
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -608,8 +391,8 @@
                     <div class="col-md-9">
                         <div class="row margin-bottom-5">
                             <div class="col-sm-4 result-category">
-                                <h2>Men</h2>
-                                <small class="shop-bg-red badge-results">45 Results</small>
+                                <h2>Products</h2>
+                                <small class="shop-bg-red badge-results"><h:outputText value="#{displayProductMB.allProductsSize}" /> Results</small>
                             </div>
                             <div class="col-sm-8">
                                 <ul class="list-inline clear-both">
@@ -783,25 +566,11 @@
                             <div class="col-md-2 col-sm-3">
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-6">
-                                        <h2 class="thumb-headline">Secciones</h2>
-                                        <ul class="list-unstyled simple-list margin-bottom-20">
-                                            <li><a href="#">Ultima Hora</a></li>
-                                            <li><a href="#">Exclusiva</a></li>
-                                            <li><a href="#">Documentos </a></li>
-                                            <li><a href="#">Francisco papa</a></li>
-                                            <li>...</li>
-                                        </ul>
+                                        <h2 class="thumb-headline">Terms and Conditions</h2>
                                     </div>
 
                                     <div class="col-sm-12 col-xs-6">
-                                        <h2 class="thumb-headline">Temas</h2>
-                                        <ul class="list-unstyled simple-list">
-                                            <li><a href="#">Ultima Hora</a></li>
-                                            <li><a href="#">Exclusiva</a></li>
-                                            <li><a href="#">Documentos </a></li>
-                                            <li><a href="#">Francisco papa</a></li>
-                                            <li>...</li>
-                                        </ul>
+                                        <h2 class="thumb-headline">Teams</h2>
                                     </div>
                                 </div>
                             </div>
@@ -809,24 +578,11 @@
                             <div class="col-md-2 col-sm-3">
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-6">
-                                        <h2 class="thumb-headline">Utilidades</h2>
-                                        <ul class="list-unstyled simple-list margin-bottom-20">
-                                            <li><a href="#">Ultima Hora</a></li>
-                                            <li><a href="#">Exclusiva</a></li>
-                                            <li><a href="#">Documentos </a></li>
-                                            <li>...</li>
-                                        </ul>
+                                        <h2 class="thumb-headline">Utilities</h2>
                                     </div>
 
                                     <div class="col-sm-12 col-xs-6">
-                                        <h2 class="thumb-headline">Documentos</h2>
-                                        <ul class="list-unstyled simple-list">
-                                            <li><a href="#">Ultima Hora</a></li>
-                                            <li><a href="#">Exclusiva</a></li>
-                                            <li><a href="#">Documentos </a></li>
-                                            <li><a href="#">Francisco papa</a></li>
-                                            <li>...</li>
-                                        </ul>
+                                        <h2 class="thumb-headline">Documentation</h2>
                                     </div>
                                 </div>
                             </div>
@@ -834,47 +590,11 @@
                             <div class="col-md-2 col-sm-3">
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-6">
-                                        <h2 class="thumb-headline">Publicidad</h2>
-                                        <ul class="list-unstyled simple-list margin-bottom-20">
-                                            <li><a href="#">Ultima Hora</a></li>
-                                            <li><a href="#">Exclusiva</a></li>
-                                            <li><a href="#">Documentos </a></li>
-                                            <li><a href="#">Francisco papa</a></li>
-                                            <li>...</li>
-                                        </ul>
+                                        <h2 class="thumb-headline">Publications</h2>
                                     </div>
 
                                     <div class="col-sm-12 col-xs-6">
-                                        <h2 class="thumb-headline">Contacto</h2>
-                                        <ul class="list-unstyled simple-list">
-                                            <li><a href="#">Ultima Hora</a></li>
-                                            <li><a href="#">Exclusiva</a></li>
-                                            <li><a href="#">Documentos </a></li>
-                                            <li><a href="#">Francisco papa</a></li>
-                                            <li>...</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-2 col-sm-3">
-                                <div class="row">
-                                    <div class="col-sm-12 col-xs-6">
-                                        <h2 class="thumb-headline">Utilidades</h2>
-                                        <ul class="list-unstyled simple-list margin-bottom-20">
-                                            <li><a href="#">Ultima Hora</a></li>
-                                            <li><a href="#">Exclusiva</a></li>
-                                            <li>...</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-sm-12 col-xs-6">
-                                        <h2 class="thumb-headline">Documentos</h2>
-                                        <ul class="list-unstyled simple-list">
-                                            <li><a href="#">Ultima Hora</a></li>
-                                            <li><a href="#">Exclusiva</a></li>
-                                            <li>...</li>
-                                        </ul>
+                                        <h2 class="thumb-headline">Contact</h2>
                                     </div>
                                 </div>
                             </div>
