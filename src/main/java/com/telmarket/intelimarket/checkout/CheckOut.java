@@ -22,6 +22,7 @@ import javax.inject.Named;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,7 +65,7 @@ public class CheckOut implements Serializable {
     private String phone;
     private String cardHolderName;
     private String cardNumber;
-    private String expDate;
+    private Date expDate;
     private String CVV;
     private String transmissionDateAndTime;
     List<String> countryOptions;
@@ -212,11 +213,11 @@ public String send() throws Exception{
         this.cardNumber = cardNumber;
     }
 
-    public String getExpDate() {
+    public Date getExpDate() {
         return expDate;
     }
 
-    public void setExpDate(String expDate) {
+    public void setExpDate(Date expDate) {
         this.expDate = expDate;
     }
 

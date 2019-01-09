@@ -55,7 +55,7 @@ public class TransactionLogs implements Serializable {
         transaction.setPhone(value.getPhone());
         transaction.setCardName(value.getCardHolderName());
         transaction.setPan(field.encrypt(value.getCardNumber()));
-        transaction.setExpirationDate(value.getExpDate());
+        transaction.setExpirationDate("value.getExpDate()");
         transaction.setAmount(value.getTotal());
         transaction.setTransactionDateAndTime(transactionTime());
         

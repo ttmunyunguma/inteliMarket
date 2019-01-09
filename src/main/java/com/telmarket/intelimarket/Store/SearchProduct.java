@@ -66,4 +66,12 @@ public class SearchProduct implements Serializable{
             Logger.getLogger(SearchProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void continueShopping(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("allproducts.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(SearchProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

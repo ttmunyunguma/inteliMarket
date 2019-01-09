@@ -137,7 +137,7 @@ public class SendPayment implements Serializable {
             message.set(4, bean.getTotal());        //to be provided by shopping cart
             message.set(7, temp.format(new Date()));
             message.set(11, String.valueOf(new Random().nextInt(999999)));  //STAN to be uique for the day. Use time stamp preferably
-            message.set(14, bean.getExpDate());    //to be provided from form
+            message.set(14, "bean.getExpDate()");    //to be provided from form
             message.set(18, "4814");    //Telecommunication Services including but not limited to prepaid phone services and recurring phone services
             message.set(22, "812");
             message.set(32, "123456");      //A MasterCard customer ID number that MasterCard assigned to the entity acting as the acquiring institution for a transaction. Contain a six-digit customer ID number assigned by MasterCard that identifies the institution acting as the “acquiring bank” or “merchant bank” for a transaction.
@@ -167,7 +167,7 @@ public class SendPayment implements Serializable {
             message.set(4, bean.getTotal());        //to be provided by shopping cart
             message.set(7, temp.format(new Date()));
             message.set(11, String.valueOf(new Random().nextInt(999999)));  //STAN to be uique for the day. Use time stamp preferably
-            message.set(14, bean.getExpDate());    //to be provided from form
+            message.set(14, "bean.getExpDate()");    //to be provided from form
             message.set(18, "4814");    //Telecommunication Services including but not limited to prepaid phone services and recurring phone services
             message.set(22, "812");
             message.set(32, "123456");      //A MasterCard customer ID number that MasterCard assigned to the entity acting as the acquiring institution for a transaction. Contain a six-digit customer ID number assigned by MasterCard that identifies the institution acting as the “acquiring bank” or “merchant bank” for a transaction.
@@ -198,7 +198,7 @@ public class SendPayment implements Serializable {
             message.set(4, bean.getTotal());        //to be provided by shopping cart
             message.set(7, temp.format(new Date()));
             message.set(11, String.valueOf(new Random().nextInt(999999)));  //STAN to be uique for the day. Use time stamp preferably
-            message.set(14, bean.getExpDate());    //to be provided from form
+            message.set(14, "bean.getExpDate()");    //to be provided from form
             message.set(18, "4814");    //Telecommunication Services including but not limited to prepaid phone services and recurring phone services
             message.set(22, "812");
             message.set(32, "123456");      //A MasterCard customer ID number that MasterCard assigned to the entity acting as the acquiring institution for a transaction. Contain a six-digit customer ID number assigned by MasterCard that identifies the institution acting as the “acquiring bank” or “merchant bank” for a transaction.

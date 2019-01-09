@@ -30,10 +30,13 @@ var StepWizard = function () {
                         return form.valid();
                     },
                     onFinished: function (event, currentIndex) {
-                        alert("Submitted!");
+                        var payment = new com.telmarket.intelimarket.checkout.CheckOut();
+                        return{
+                            result: payment.send()
+                        };
                     }
                 });
-        }, 
+        } 
 
     };
 }();        
