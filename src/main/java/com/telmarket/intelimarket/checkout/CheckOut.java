@@ -18,6 +18,7 @@
  */
 package com.telmarket.intelimarket.checkout;
 
+import com.telmarket.intelimarket.handler.ShoppingCart;
 import javax.inject.Named;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
@@ -27,6 +28,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import org.jpos.iso.ISOMsg;
 
 /**
@@ -38,6 +40,8 @@ import org.jpos.iso.ISOMsg;
 @ManagedBean
 public class CheckOut implements Serializable {
 
+    @ManagedProperty(value = "#{shoppingCart}")
+    ShoppingCart cart = new ShoppingCart();
     /**
      * Creates a new instance of CheckOut
      */
@@ -65,64 +69,18 @@ public class CheckOut implements Serializable {
     private String phone;
     private String cardHolderName;
     private String cardNumber;
-    private Date expDate;
+    private String expDate;
     private String CVV;
     private String transmissionDateAndTime;
     List<String> countryOptions;
-
-
-public String send() throws Exception{
-        
-        TransactionLogs log = new TransactionLogs();
-        SendPayment pay = new SendPayment();
-        
-        try {
-            
-            pay.sendIt(this);
-        } 
-        catch (Exception ex) {
-            Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            log.createLog();
-        }
-        
-        ISOMsg incoming = pay.getResp();
-        
-        if(incoming != null){
-            if(incoming.hasField(39)==true){
-                if(null == String.valueOf(incoming.getValue(39)))return "/responce/error.xhtml";
-                
-                    else switch (String.valueOf(incoming.getValue(39))) {
-                        case "00":
-                            return "/responce/success.xhtml";
-                        case "13":
-                            return "/responce/error_amount.xhtml";
-                        case "54":
-                            return "/responce/error_expired.xhtml";
-                        case "78":
-                            return "/responce/error_suspicious.xhtml";
-                        case "12":
-                            return "/responce/error_reqInvalid.xhtml";
-                        case "51":
-                            return "/responce/error_insuficientFunds.xhtml";    
-                        default:
-                            return "/responce/error.xhtml";
-                    }
-            }
-            else
-                return "/responce/error.xhtml";  
-        }
-        else
-            return "/responce/error_noresponce.xhtml";  
-    }
 
     public String getTotal() {
         return total;
     }
 
     public void setTotal(String total) {
-        this.total = total;
+        
+        total = String.valueOf(cart.getTotal());
     }
 
     public String getFirstName() {
@@ -213,11 +171,11 @@ public String send() throws Exception{
         this.cardNumber = cardNumber;
     }
 
-    public Date getExpDate() {
+    public String getExpDate() {
         return expDate;
     }
 
-    public void setExpDate(Date expDate) {
+    public void setExpDate(String expDate) {
         this.expDate = expDate;
     }
 

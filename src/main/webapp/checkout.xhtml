@@ -34,7 +34,7 @@
 	<link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css"/>
 	<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css"/>
-        <link rel="stylesheet" href="assets/plugins/jquery-steps/css/custom-jquery.steps.css"/>
+<!--        <link rel="stylesheet" href="assets/plugins/jquery-steps/css/custom-jquery.steps.css"/>-->
         
         <!-- Style Switcher -->
 	<link rel="stylesheet" href="assets/css/plugins/style-switcher.css"/>
@@ -290,309 +290,298 @@
             <div class="content-md margin-bottom-30">
                 <div class="container">
                     <h:form class="shopping-cart">
-                        <div>
-                            
-                            <div class="header-tags">
-                                <div class="overflow-h">
-                                    <h2>Shopping Cart</h2>
-                                    <p>Review &amp; Process your cart</p>
-                                    <i class="rounded-x fa fa-check"></i>
-                                </div>
-                            </div>
-                            <section>
-                                <div class="table-responsive">
-                                    <p:dataTable var="cart" value="#{shoppingCart.cart}" class="table table-striped">
-                                    
-                                        <p:column>
-                                            <h:graphicImage class="img-responsive" name="#{cart.p.proPic}" library="images"/>
-                                        </p:column>
-                                        
-                                        <p:column headerText="Product" class="product-in-table">
-                                            <h3><p:outputLabel value="#{cart.p.proName}" class="product-it-in"/></h3>
-                                        </p:column>
-                                        
-                                        <p:column headerText="Price">
-                                            <p:outputLabel value="$ #{cart.p.proPrice}"/>
-                                        </p:column>
-                                        
-                                        <p:column headerText="Quantity">
-                                            <h:commandButton type='button' class="quantity-button" onclick='javascript: subtractQty1();' value='-'></h:commandButton>
-                                            <p:inputText value="#{cart.quantity}" class="quantity-field" label='qty1' id='qty1'/>
-                                            <h:commandButton type='button' class="quantity-button" onclick='javascript: document.getElementById("qty1").value++;' value='+'></h:commandButton>
-                                        </p:column>
-                                        
-                                        <p:column headerText="TOTAL $">
-                                            <p:outputLabel value="#{cart.p.proPrice}" class="shop-red"/>
-                                        </p:column>
-                                        
-                                        <p:column>
-                                            <h:commandButton value="&times;" action="#{shoppingCart.removeCart(cart)}" class="close">
-                                                <span class="sr-only">Close</span>
-                                            </h:commandButton>
-                                        </p:column>
-                                        
-                                    </p:dataTable>
-                                    <p:commandButton value="Update Cart" action="#{shoppingCart.updateCart()}" ajax="false"/>
-                                    <p:commandButton value="Continue Shopping" action="#{searchProduct.continueShopping()}" ajax="false"/>
-                                    <br/><br/>If you're done just click the <strong>NEXT</strong> button bellow
-                                </div>
-                            </section>
-                            
-                            <div class="header-tags">
-                                <div class="overflow-h">
-                                    <h2>Billing info</h2>
-                                    <p>Shipping and address info</p>
-                                    <i class="rounded-x fa fa-home"></i>
-                                </div>
-                            </div>
-                            <section class="billing-info">
-                                <div class="row">
-                                    <div class="col-md-6 md-margin-bottom-40">
-                                        <h2 class="title-type">Billing Address</h2>
-                                        <div class="billing-info-inputs checkbox-list">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <p:inputText id="name" placeholder="First Name" value="#{checkOut.firstName}" class="form-control required"/>
-                                                    <p:inputText id="email" placeholder="Email" value="#{checkOut.state}" class="form-control required email"/>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <p:inputText id="surname" placeholder="Last Name" value="#{checkOut.lastName}" class="form-control required"/>
-                                                    <p:inputText id="phone" placeholder="Phone" value="#{checkOut.phone}" class="form-control required"/>
-                                                </div>
-                                            </div>
-                                            <p:inputText id="billingAddress" placeholder="Address Line 1" value="#{checkOut.addLine1}" class="form-control required"/>
-                                            <p:inputText id="billingAddress2" placeholder="Address Line 2" value="#{checkOut.addLine2}" class="form-control"/>
-                                            <div class="row">
-                                                <div class="col-sm-6"> 
-                                                    <p:inputText id="city" placeholder="City" value="#{checkOut.city}" class="form-control required"/>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <h:selectOneMenu id="country" value="#{checkOut.country}" class="form-control required">
-                                                        <f:selectItems value="#{checkOut.countryOptions}"/>
-                                                    </h:selectOneMenu>
+                        <p:growl id="growl" showDetail="true" sticky="true"/>
+                        <p:wizard >
+                            <p:tab id="cart" title="Shopping Cart" class="header-tags">
+                                <p:panel header="Review &amp; Process your cart" class="overflow-h fa fa-check">
+                                    <section>
+                                        <div class="table-responsive">
+                                            <p:dataTable var="cart" value="#{shoppingCart.cart}" class="table table-striped">
+
+                                                <p:column>
+                                                    <h:graphicImage class="img-responsive" name="#{cart.p.proPic}" library="images"/>
+                                                </p:column>
+
+                                                <p:column headerText="Product" class="product-in-table">
+                                                    <h3><p:outputLabel value="#{cart.p.proName}" class="product-it-in"/></h3>
+                                                </p:column>
+
+                                                <p:column headerText="Price">
+                                                    <p:outputLabel value="$ #{cart.p.proPrice}"/>
+                                                </p:column>
+
+                                                <p:column headerText="Quantity">
+                                                    <h:commandButton type='button' class="quantity-button" onclick='javascript: subtractQty1();' value='-'></h:commandButton>
+                                                    <p:inputText value="#{cart.quantity}" class="quantity-field" label='qty1' id='qty1'/>
+                                                    <h:commandButton type='button' class="quantity-button" onclick='javascript: document.getElementById("qty1").value++;' value='+'></h:commandButton>
+                                                </p:column>
+
+                                                <p:column headerText="TOTAL $">
+                                                    <p:outputLabel value="#{cart.p.proPrice}" class="shop-red"/>
+                                                </p:column>
+
+                                                <p:column>
+                                                    <h:commandButton value="&times;" action="#{shoppingCart.removeCart(cart)}" class="close">
+                                                        <span class="sr-only">Close</span>
+                                                    </h:commandButton>
+                                                </p:column>
+
+                                            </p:dataTable>
+                                            <p:commandButton value="Update Cart" action="#{shoppingCart.updateCart()}" ajax="false"/>
+                                            <p:commandButton value="Continue Shopping" action="#{searchProduct.continueShopping()}" ajax="false"/>
+                                            <br/><br/>If you're done just click the <strong>NEXT</strong> button bellow
+                                        </div>
+                                    </section>
+                                </p:panel>
+                            </p:tab>
+                            <p:tab id="billing" title="Billing info" class="header-tags">
+                                <p:panel header="Shipping and address info" class="overflow-h fa fa-home">
+                                    <section class="billing-info">
+                                        <div class="row">
+                                            <div class="col-md-6 md-margin-bottom-40">
+                                                <h2 class="title-type">Billing Address</h2>
+                                                <div class="billing-info-inputs checkbox-list">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <p:inputText id="name" placeholder="First Name" value="#{userWizard.user.firstName}" class="form-control required"/>
+                                                            <p:inputText id="email" placeholder="Email" value="#{userWizard.user.email}" class="form-control required email"/>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <p:inputText id="surname" placeholder="Last Name" value="#{userWizard.user.lastName}" class="form-control required"/>
+                                                            <p:inputText id="phone" placeholder="Phone" value="#{userWizard.user.phone}" class="form-control required"/>
+                                                        </div>
+                                                    </div>
+                                                    <p:inputText id="billingAddress" placeholder="Address Line 1" value="#{userWizard.user.addLine1}" class="form-control required"/>
+                                                    <p:inputText id="billingAddress2" placeholder="Address Line 2" value="#{userWizard.user.addLine2}" class="form-control"/>
+                                                    <div class="row">
+                                                        <div class="col-sm-6"> 
+                                                            <p:inputText id="city" placeholder="City" value="#{userWizard.user.city}" class="form-control required"/>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <h:selectOneMenu id="country" value="#{userWizard.user.country}" class="form-control required">
+                                                                <f:selectItems value="#{userWizard.user.countryOptions}"/>
+                                                            </h:selectOneMenu>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="checkbox text-left">
+                                                        <input type="checkbox" name="checkbox"/>
+                                                        <i></i>
+                                                        Ship items to the above billing address
+                                                    </label>
                                                 </div>
                                             </div>
 
-                                            <label class="checkbox text-left">
-                                                <input type="checkbox" name="checkbox"/>
-                                                <i></i>
-                                                Ship items to the above billing address
-                                            </label>
+                                            <div class="col-md-6">
+                                                <h2 class="title-type">Shipping Address</h2>
+                                                <div class="billing-info-inputs checkbox-list">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <input id="name2" type="text" placeholder="First Name" name="firstname" class="form-control"/>
+                                                            <input id="email2" type="text" placeholder="Email" name="email" class="form-control email"/>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <input id="surname2" type="text" placeholder="Last Name" name="lastname" class="form-control"/>
+                                                            <input id="phone2" type="tel" placeholder="Phone" name="phone" class="form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <input id="shippingAddress" type="text" placeholder="Address Line 1" name="address1" class="form-control"/>
+                                                    <input id="shippingAddress2" type="text" placeholder="Address Line 2" name="address2" class="form-control"/>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <input id="city2" type="text" placeholder="City" name="city" class="form-control"/>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <input id="zip2" type="text" placeholder="Country" name="zip" class="form-control"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </section>
+                                </p:panel>
+                            </p:tab>
+                            <p:tab id="payment" title="Payment" class="header-tags">
+                                <p:panel header="Select Payment method" class="overflow-h fa fa-credit-card">
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6 md-margin-bottom-50">
+                                                <h2 class="title-type">Choose a payment method</h2>
+                                                <div class="accordion-v2">
+                                                    <div class="panel-group" id="accordion">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <h4 class="panel-title">
+                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                                        <i class="fa fa-credit-card"></i>
+                                                                        Credit or Debit Card
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                                <div class="panel-body cus-form-horizontal">
+                                                                    <div class="form-group">
+                                                                        <p:outputLabel class="col-sm-4 no-col-space control-label" value="Cardholder Name"/>
+                                                                        <div class="col-sm-8">
+                                                                            <p:inputText class="form-control required" value="#{userWizard.user.cardHolderName}"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <p:outputLabel class="col-sm-4 no-col-space control-label" value="Card Number"/>
+                                                                        <div class="col-sm-8">
+                                                                            <p:inputText class="form-control required" value="#{userWizard.user.cardNumber}" placeholder="0000 0000 0000 0000"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <p:outputLabel class="col-sm-4 no-col-space control-label" value="Payment Types"/>
+                                                                        <div class="col-sm-8">
+                                                                            <ul class="list-inline payment-type">
+                                                                                <li><i class="fa fa-cc-visa"></i></li>
+                                                                                <li><i class="fa fa-cc-mastercard"></i></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <p:outputLabel class="col-sm-4" value="Expiration Date"/>
+                                                                        <div class="col-sm-8 ">
+                                                                            <p:inputText value="#{userWizard.user.expDate}" id="date"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <p:outputLabel class="col-sm-4 no-col-space control-label" value="CVV"/>
+                                                                        <div class="col-sm-8 input-small-field">
+                                                                            <p:password class="form-control required" value="#{userWizard.user.CVV}"/>
+                                                                            <a href="https://www.cvvnumber.com/cvv.html" target="blank">What's this?</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <h4 class="panel-title">
+                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                                        <i class="fa fa-paypal"></i>
+                                                                        Pay with PayPal
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                                <div class="content margin-left-10">
+                                                                    <a href="https://www.paypal.com/" target="blank"><img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png" alt="PayPal"/></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                    <div class="col-md-6">
-                                        <h2 class="title-type">Shipping Address</h2>
-                                        <div class="billing-info-inputs checkbox-list">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <input id="name2" type="text" placeholder="First Name" name="firstname" class="form-control"/>
-                                                    <input id="email2" type="text" placeholder="Email" name="email" class="form-control email"/>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <input id="surname2" type="text" placeholder="Last Name" name="lastname" class="form-control"/>
-                                                    <input id="phone2" type="tel" placeholder="Phone" name="phone" class="form-control"/>
-                                                </div>
-                                            </div>
-                                            <input id="shippingAddress" type="text" placeholder="Address Line 1" name="address1" class="form-control"/>
-                                            <input id="shippingAddress2" type="text" placeholder="Address Line 2" name="address2" class="form-control"/>
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <input id="city2" type="text" placeholder="City" name="city" class="form-control"/>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <input id="zip2" type="text" placeholder="Country" name="zip" class="form-control"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                            
-                            <div class="header-tags">
-                                <div class="overflow-h">
-                                    <h2>Payment</h2>
-                                    <p>Select Payment method</p>
-                                    <i class="rounded-x fa fa-credit-card"></i>
-                                </div>
-                            </div>
-                            <section>
-                                <div class="row">
-                                    <div class="col-md-6 md-margin-bottom-50">
-                                        <h2 class="title-type">Choose a payment method</h2>
-                                        <!-- Accordion -->
-                                        <div class="accordion-v2">
-                                            <div class="panel-group" id="accordion">
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading">
-                                                        <h4 class="panel-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                                <i class="fa fa-credit-card"></i>
-                                                                Credit or Debit Card
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="collapseOne" class="panel-collapse collapse in">
-                                                        <div class="panel-body cus-form-horizontal">
-                                                            <div class="form-group">
-                                                                <p:outputLabel class="col-sm-4 no-col-space control-label" value="Cardholder Name"/>
-                                                                <div class="col-sm-8">
-                                                                    <p:inputText class="form-control required" value="#{checkOut.cardHolderName}"/>
-                                                                </div>
+                                            <div class="col-md-6">
+                                                <h2 class="title-type">Frequently asked questions</h2>
+                                                <div class="accordion-v2 plus-toggle">
+                                                    <div class="panel-group" id="accordion-v2">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <h4 class="panel-title">
+                                                                    <a data-toggle="collapse" data-parent="#accordion-v2" href="#collapseOne-v2">
+                                                                        What payments methods can I use?
+                                                                    </a>
+                                                                </h4>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <p:outputLabel class="col-sm-4 no-col-space control-label" value="Card Number"/>
-                                                                <div class="col-sm-8">
-                                                                    <p:inputText class="form-control required" value="#{checkOut.cardNumber}" placeholder="0000 0000 0000 0000"/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <p:outputLabel class="col-sm-4 no-col-space control-label" value="Payment Types"/>
-                                                                <div class="col-sm-8">
-                                                                    <ul class="list-inline payment-type">
-                                                                        <li><i class="fa fa-cc-visa"></i></li>
-                                                                        <li><i class="fa fa-cc-mastercard"></i></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <p:outputLabel class="col-sm-4" value="Expiration Date"/>
-                                                                <div class="col-sm-8 ">
-                                                                    <p:calendar value="#{checkOut.expDate}" id="date"/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <p:outputLabel class="col-sm-4 no-col-space control-label" value="CVV"/>
-                                                                <div class="col-sm-8 input-small-field">
-                                                                    <p:password class="form-control required" value="#{checkOut.CVV}"/>
-                                                                    <a href="https://www.cvvnumber.com/cvv.html" target="blank">What's this?</a>
+                                                            <div id="collapseOne-v2" class="panel-collapse collapse in">
+                                                                <div class="panel-body">
+                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit, felis vel tincidunt sodales, urna metus rutrum leo, sit amet finibus velit ante nec lacus. Cras erat nunc, pulvinar nec leo at, rhoncus elementum orci. Nullam ut sapien ultricies, gravida ante ut, ultrices nunc.
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading">
-                                                        <h4 class="panel-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                                                <i class="fa fa-paypal"></i>
-                                                                Pay with PayPal
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="collapseTwo" class="panel-collapse collapse">
-                                                        <div class="content margin-left-10">
-                                                            <a href="https://www.paypal.com/" target="blank"><img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png" alt="PayPal"/></a>
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <h4 class="panel-title">
+                                                                    <a data-toggle="collapse" class="collapsed" data-parent="#accordion-v2" href="#collapseTwo-v2">
+                                                                        Can I use gift card to pay for my purchase?
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div id="collapseTwo-v2" class="panel-collapse collapse">
+                                                                <div class="panel-body">
+                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit, felis vel tincidunt sodales, urna metus rutrum leo, sit amet finibus velit ante nec lacus. Cras erat nunc, pulvinar nec leo at, rhoncus elementum orci. Nullam ut sapien ultricies, gravida ante ut, ultrices nunc.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <h4 class="panel-title">
+                                                                    <a data-toggle="collapse" class="collapsed" data-parent="#accordion-v2" href="#collapseThree-v2">
+                                                                        Will I be charged when I place my order?
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div id="collapseThree-v2" class="panel-collapse collapse">
+                                                                <div class="panel-body">
+                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit, felis vel tincidunt sodales, urna metus rutrum leo, sit amet finibus velit ante nec lacus. Cras erat nunc, pulvinar nec leo at, rhoncus elementum orci. Nullam ut sapien ultricies, gravida ante ut, ultrices nunc.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <h4 class="panel-title">
+                                                                    <a data-toggle="collapse" class="collapsed" data-parent="#accordion-v2" href="#collapseFour-v2">
+                                                                        How long will it take to get my order?
+                                                                    </a>
+                                                                </h4>
+                                                            </div>
+                                                            <div id="collapseFour-v2" class="panel-collapse collapse">
+                                                                <div class="panel-body">
+                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit, felis vel tincidunt sodales, urna metus rutrum leo, sit amet finibus velit ante nec lacus. Cras erat nunc, pulvinar nec leo at, rhoncus elementum orci. Nullam ut sapien ultricies, gravida ante ut, ultrices nunc.
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End Accordion -->
-                                    </div>
-                                    
-<!--                                    <div class="col-md-6">
-                                        <h2 class="title-type">Frequently asked questions</h2>
-                                         Accordion 
-                                        <div class="accordion-v2 plus-toggle">
-                                            <div class="panel-group" id="accordion-v2">
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading">
-                                                        <h4 class="panel-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion-v2" href="#collapseOne-v2">
-                                                                What payments methods can I use?
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="collapseOne-v2" class="panel-collapse collapse in">
-                                                        <div class="panel-body">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit, felis vel tincidunt sodales, urna metus rutrum leo, sit amet finibus velit ante nec lacus. Cras erat nunc, pulvinar nec leo at, rhoncus elementum orci. Nullam ut sapien ultricies, gravida ante ut, ultrices nunc.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading">
-                                                        <h4 class="panel-title">
-                                                            <a data-toggle="collapse" class="collapsed" data-parent="#accordion-v2" href="#collapseTwo-v2">
-                                                                Can I use gift card to pay for my purchase?
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="collapseTwo-v2" class="panel-collapse collapse">
-                                                        <div class="panel-body">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit, felis vel tincidunt sodales, urna metus rutrum leo, sit amet finibus velit ante nec lacus. Cras erat nunc, pulvinar nec leo at, rhoncus elementum orci. Nullam ut sapien ultricies, gravida ante ut, ultrices nunc.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading">
-                                                        <h4 class="panel-title">
-                                                            <a data-toggle="collapse" class="collapsed" data-parent="#accordion-v2" href="#collapseThree-v2">
-                                                                Will I be charged when I place my order?
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="collapseThree-v2" class="panel-collapse collapse">
-                                                        <div class="panel-body">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit, felis vel tincidunt sodales, urna metus rutrum leo, sit amet finibus velit ante nec lacus. Cras erat nunc, pulvinar nec leo at, rhoncus elementum orci. Nullam ut sapien ultricies, gravida ante ut, ultrices nunc.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading">
-                                                        <h4 class="panel-title">
-                                                            <a data-toggle="collapse" class="collapsed" data-parent="#accordion-v2" href="#collapseFour-v2">
-                                                                How long will it take to get my order?
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="collapseFour-v2" class="panel-collapse collapse">
-                                                        <div class="panel-body">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit, felis vel tincidunt sodales, urna metus rutrum leo, sit amet finibus velit ante nec lacus. Cras erat nunc, pulvinar nec leo at, rhoncus elementum orci. Nullam ut sapien ultricies, gravida ante ut, ultrices nunc.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                         End Accordion 
-                                    </div>-->
-                                </div>
-                            </section>
+                                    </section>
 
-                            <div class="coupon-code">
-                                <div class="row">
-                                    <div class="col-sm-4 sm-margin-bottom-30">
-                                        <h3>Discount Code</h3>
-                                        <p>Enter your coupon code</p>
-                                        <input class="form-control margin-bottom-10" name="code" type="text"/>
-                                            <button type="button" class="btn-u btn-u-sea-shop">Apply Coupon</button>
+                                    <div class="coupon-code">
+                                        <div class="row">
+                                            <div class="col-sm-4 sm-margin-bottom-30">
+                                                <h3>Discount Code</h3>
+                                                <p>Enter your coupon code</p>
+                                                <input class="form-control margin-bottom-10" name="code" type="text"/>
+                                                <button type="button" class="btn-u btn-u-sea-shop">Apply Coupon</button>
+                                            </div>
+                                            <div class="col-sm-3 col-sm-offset-5">
+                                                <ul class="list-inline total-result">
+                                                    <li>
+                                                        <h4>Subtotal:</h4>
+                                                        <div class="total-result-in">
+                                                            <span><h:outputLabel value="$ #{shoppingCart.total}"/></span>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <h4>Shipping:</h4>
+                                                        <div class="total-result-in">
+                                                            <span class="text-right">- - - -</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="divider"></li>
+                                                    <li class="total-price">
+                                                        <h4>Total:</h4>
+                                                        <div class="total-result-in">
+                                                            <span><h:outputLabel value="$ #{shoppingCart.total}"/></span>
+                                                        </div>
+                                                    </li>
+                                                    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                                                        <h:graphicImage url="#{resource['images:ajax-loading.gif']}" alt="Please Wait..."/>
+                                                    </p:dialog>
+                                                    <p:commandButton value="FINISH" action="#{sendPaymentControl.send()}" process="@this"/>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-3 col-sm-offset-5">
-                                        <ul class="list-inline total-result">
-                                            <li>
-                                                <h4>Subtotal:</h4>
-                                                <div class="total-result-in">
-                                                    <span><h:outputLabel value="$ #{shoppingCart.total}"/></span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <h4>Shipping:</h4>
-                                                <div class="total-result-in">
-                                                    <span class="text-right">- - - -</span>
-                                                </div>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li class="total-price">
-                                                <h4>Total:</h4>
-                                                <div class="total-result-in">
-                                                    <span><h:outputLabel value="$ #{shoppingCart.total}"/></span>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                </p:panel>
+                            </p:tab>
+                        </p:wizard>
                     </h:form>
                 </div><!--/end container-->
             </div>
@@ -636,7 +625,7 @@
                                 </ul>
 
                                 <ul class="list-inline shop-social">
-                                    <li><a href="facebook.come/terrence.munyunguma" target="blank"><i class="fb rounded-md fa fa-facebook"></i></a></li>
+                                    <li><a href="https://www.facebook.come/terrence.munyunguma" target="blank"><i class="fb rounded-md fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="tw rounded-md fa fa-twitter"></i></a></li>
                                     <li><a href="#"><i class="gp rounded-md fa fa-google-plus"></i></a></li>
                                     <li><a href="#"><i class="yt rounded-md fa fa-youtube"></i></a></li>
@@ -717,7 +706,7 @@
         <!-- JS Implementing Plugins -->
         <script src="assets/plugins/back-to-top.js"></script>
         <script src="assets/plugins/smoothScroll.js"></script>
-        <script src="assets/plugins/jquery-steps/build/jquery.steps.js"></script>
+<!--        <script src="assets/plugins/jquery-steps/build/jquery.steps.js"></script>-->
         <script src="assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
         <!-- JS Customization -->
@@ -725,7 +714,7 @@
         <!-- JS Page Level -->
         <script src="assets/js/shop.app.js"></script>
         <script src="assets/js/forms/page_login.js"></script>
-	<script src="assets/js/plugins/stepWizard.js"></script>
+<!--	<script src="assets/js/plugins/stepWizard.js"></script>-->
 	<script src="assets/js/forms/product-quantity.js"></script>
 	<script src="assets/js/plugins/style-switcher.js"></script>
 	<script>
@@ -733,7 +722,7 @@
                         App.init();
                         Login.initLogin();
 			App.initScrollBar();
-			StepWizard.initStepWizard();
+//			StepWizard.initStepWizard();
 			StyleSwitcher.initStyleSwitcher();
                 });
         </script>

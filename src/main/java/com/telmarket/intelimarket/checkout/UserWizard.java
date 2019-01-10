@@ -19,9 +19,10 @@
 package com.telmarket.intelimarket.checkout;
 
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.FlowEvent;
 
@@ -31,14 +32,24 @@ import org.primefaces.event.FlowEvent;
  */
 @Named(value = "userWizard")
 @SessionScoped
+@ManagedBean
 public class UserWizard implements Serializable {
 
     private CheckOut user = new CheckOut();
+    private SendPaymentControl payment = new SendPaymentControl();
     private boolean skip;
     /**
      * Creates a new instance of UserWizard
      */
     public UserWizard() {
+    }
+
+    public SendPaymentControl getPayment() {
+        return payment;
+    }
+
+    public void setPayment(SendPaymentControl payment) {
+        this.payment = payment;
     }
 
     public CheckOut getUser() {
@@ -48,11 +59,11 @@ public class UserWizard implements Serializable {
     public void setUser(CheckOut user) {
         this.user = user;
     }
-    
+
     public boolean isSkip() {
         return skip;
     }
- 
+
     public void setSkip(boolean skip) {
         this.skip = skip;
     }
@@ -63,7 +74,12 @@ public class UserWizard implements Serializable {
             return "confirm";
         }
         else {
-            return event.getNewStep();
+        return event.getNewStep();
         }
+    }
+    
+    public void save() {        
+        FacesMessage msg = new FacesMessage("Successful", "Welcome :" + user.getFullName());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 }
