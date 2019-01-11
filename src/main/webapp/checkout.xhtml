@@ -34,7 +34,6 @@
 	<link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css"/>
 	<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css"/>
-<!--        <link rel="stylesheet" href="assets/plugins/jquery-steps/css/custom-jquery.steps.css"/>-->
         
         <!-- Style Switcher -->
 	<link rel="stylesheet" href="assets/css/plugins/style-switcher.css"/>
@@ -343,23 +342,23 @@
                                                 <div class="billing-info-inputs checkbox-list">
                                                     <div class="row">
                                                         <div class="col-sm-6">
-                                                            <p:inputText id="name" placeholder="First Name" value="#{userWizard.user.firstName}" class="form-control required"/>
-                                                            <p:inputText id="email" placeholder="Email" value="#{userWizard.user.email}" class="form-control required email"/>
+                                                            <p:inputText id="name" placeholder="First Name" value="#{checkOut.firstName}" class="form-control required"/>
+                                                            <p:inputText id="email" placeholder="Email" value="#{checkOut.email}" class="form-control required email"/>
                                                         </div>
                                                         <div class="col-sm-6">
-                                                            <p:inputText id="surname" placeholder="Last Name" value="#{userWizard.user.lastName}" class="form-control required"/>
-                                                            <p:inputText id="phone" placeholder="Phone" value="#{userWizard.user.phone}" class="form-control required"/>
+                                                            <p:inputText id="surname" placeholder="Last Name" value="#{checkOut.lastName}" class="form-control required"/>
+                                                            <p:inputText id="phone" placeholder="Phone" value="#{checkOut.phone}" class="form-control required"/>
                                                         </div>
                                                     </div>
-                                                    <p:inputText id="billingAddress" placeholder="Address Line 1" value="#{userWizard.user.addLine1}" class="form-control required"/>
-                                                    <p:inputText id="billingAddress2" placeholder="Address Line 2" value="#{userWizard.user.addLine2}" class="form-control"/>
+                                                    <p:inputText id="billingAddress" placeholder="Address Line 1" value="#{checkOut.addLine1}" class="form-control required"/>
+                                                    <p:inputText id="billingAddress2" placeholder="Address Line 2" value="#{checkOut.addLine2}" class="form-control"/>
                                                     <div class="row">
                                                         <div class="col-sm-6"> 
-                                                            <p:inputText id="city" placeholder="City" value="#{userWizard.user.city}" class="form-control required"/>
+                                                            <p:inputText id="city" placeholder="City" value="#{checkOut.city}" class="form-control required"/>
                                                         </div>
                                                         <div class="col-sm-6">
-                                                            <h:selectOneMenu id="country" value="#{userWizard.user.country}" class="form-control required">
-                                                                <f:selectItems value="#{userWizard.user.countryOptions}"/>
+                                                            <h:selectOneMenu id="country" value="#{checkOut.country}" class="form-control required">
+                                                                <f:selectItems value="#{checkOut.countryOptions}"/>
                                                             </h:selectOneMenu>
                                                         </div>
                                                     </div>
@@ -423,13 +422,13 @@
                                                                     <div class="form-group">
                                                                         <p:outputLabel class="col-sm-4 no-col-space control-label" value="Cardholder Name"/>
                                                                         <div class="col-sm-8">
-                                                                            <p:inputText class="form-control required" value="#{userWizard.user.cardHolderName}"/>
+                                                                            <p:inputText class="form-control required" value="#{checkOut.cardHolderName}"/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <p:outputLabel class="col-sm-4 no-col-space control-label" value="Card Number"/>
                                                                         <div class="col-sm-8">
-                                                                            <p:inputText class="form-control required" value="#{userWizard.user.cardNumber}" placeholder="0000 0000 0000 0000"/>
+                                                                            <p:inputText class="form-control required" value="#{checkOut.cardNumber}" placeholder="0000 0000 0000 0000"/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
@@ -444,13 +443,13 @@
                                                                     <div class="form-group">
                                                                         <p:outputLabel class="col-sm-4" value="Expiration Date"/>
                                                                         <div class="col-sm-8 ">
-                                                                            <p:inputText value="#{userWizard.user.expDate}" id="date"/>
+                                                                            <p:inputText value="#{checkOut.expDate}" id="date"/>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <p:outputLabel class="col-sm-4 no-col-space control-label" value="CVV"/>
                                                                         <div class="col-sm-8 input-small-field">
-                                                                            <p:password class="form-control required" value="#{userWizard.user.CVV}"/>
+                                                                            <p:password class="form-control required" value="#{checkOut.CVV}"/>
                                                                             <a href="https://www.cvvnumber.com/cvv.html" target="blank">What's this?</a>
                                                                         </div>
                                                                     </div>

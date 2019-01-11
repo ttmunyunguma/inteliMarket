@@ -23,13 +23,9 @@ import javax.inject.Named;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import org.jpos.iso.ISOMsg;
 
 /**
  *
@@ -210,4 +206,13 @@ public class CheckOut implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public ShoppingCart getCart() {
+        return cart;
+    }
+
+    public void setCart(ShoppingCart cart) {
+        this.cart = cart;
+    }
+    
 }

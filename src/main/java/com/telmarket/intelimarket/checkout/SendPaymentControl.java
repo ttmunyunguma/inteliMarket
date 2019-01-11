@@ -25,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 import org.jpos.iso.ISOMsg;
 
 /**
@@ -52,7 +53,7 @@ public class SendPaymentControl implements Serializable {
         this.checkOut = checkOut;
     }
     
-    public String send() throws Exception{
+    public void send() throws Exception{
         
 //        TransactionLogs log = new TransactionLogs();
         SendPayment pay = new SendPayment();
@@ -72,29 +73,33 @@ public class SendPaymentControl implements Serializable {
         
         if(incoming != null){
             if(incoming.hasField(39)==true){
-                if(null == String.valueOf(incoming.getValue(39)))return "/responce/error.xhtml";
+                if(null == String.valueOf(incoming.getValue(39)))
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("responce/error.xhtml");
                 
                     else switch (String.valueOf(incoming.getValue(39))) {
                         case "00":
-                            return "/responce/success.xhtml";
+                        {
+                            System.out.println("************************Response 00, should redirect now!!!");
+                            FacesContext.getCurrentInstance().getExternalContext().redirect("responce/success.xhtml");
+                        }
                         case "13":
-                            return "/responce/error_amount.xhtml";
+                            FacesContext.getCurrentInstance().getExternalContext().redirect("responce/error_amount.xhtml");
                         case "54":
-                            return "/responce/error_expired.xhtml";
+                            FacesContext.getCurrentInstance().getExternalContext().redirect("responce/error_expired.xhtml");
                         case "78":
-                            return "/responce/error_suspicious.xhtml";
+                            FacesContext.getCurrentInstance().getExternalContext().redirect("responce/error_suspicious.xhtml");
                         case "12":
-                            return "/responce/error_reqInvalid.xhtml";
+                            FacesContext.getCurrentInstance().getExternalContext().redirect("responce/error_reqInvalid.xhtml");
                         case "51":
-                            return "/responce/error_insuficientFunds.xhtml";    
+                            FacesContext.getCurrentInstance().getExternalContext().redirect("responce/error_insuficientFunds.xhtml");    
                         default:
-                            return "/responce/error.xhtml";
+                            FacesContext.getCurrentInstance().getExternalContext().redirect("responce/error.xhtml");
                     }
             }
             else
-                return "/responce/error.xhtml";  
+                FacesContext.getCurrentInstance().getExternalContext().redirect("responce/error.xhtml");  
         }
         else
-            return "/responce/error_noresponce.xhtml";  
+            FacesContext.getCurrentInstance().getExternalContext().redirect("responce/error_noresponce.xhtml");  
     }
 }

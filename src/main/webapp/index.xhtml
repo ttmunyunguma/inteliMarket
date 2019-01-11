@@ -159,7 +159,7 @@
                             <ul class="nav navbar-nav">
                                 <!-- Store -->
                                 <li class="dropdown mega-menu-fullwidth">
-                                    <p:link outcome="allproducts.xhtml" class="dropdown-toggle">CATALOGUE</p:link>
+                                    <p:link outcome="allproducts.xhtml" class="dropdown-toggle">CATALOG</p:link>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <div class="mega-menu-content">
@@ -566,7 +566,7 @@
                             <ui:repeat value="#{displayProductMB.randomProducts}" var="product">
                                 <li class="item">
                                     <div class="product-img">
-                                        <p:commandLink update=":form:pro" oncomplete="PF('productOP').show()"  title="Quick review">
+                                        <p:commandLink action="#{searchProduct.clickedProduct()}" title="Full review">
                                             <f:setPropertyActionListener value="#{product}" target="#{displayProductMB.selectedProduct}"/>
                                             <h:graphicImage name="#{product.proPic}" library="images" class="full-width img-responsive"/>
                                         </p:commandLink>
@@ -698,7 +698,7 @@
                         <ui:repeat value="#{displayProductMB.randomFourProducts}" var="product">
                             <div class="col-md-3 col-sm-6 md-margin-bottom-30">
                                 <div class="product-img">
-                                    <p:commandLink update=":form_latest:pro" oncomplete="PF('productOP').show()"  title="Quick review">
+                                    <p:commandLink action="#{searchProduct.clickedProduct()}" title="Full review">
                                         <f:setPropertyActionListener value="#{product}" target="#{displayProductMB.selectedProduct}"/>
                                         <h:graphicImage name="#{product.proPic}" library="images" class="full-width img-responsive"/>
                                     </p:commandLink>

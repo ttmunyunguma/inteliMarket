@@ -159,7 +159,7 @@
                             <ul class="nav navbar-nav">
                                 <!-- Store -->
                                 <li class="dropdown mega-menu-fullwidth">
-                                    <p:link outcome="allproducts.xhtml" class="dropdown-toggle">CATALOGUE</p:link>
+                                    <p:link outcome="allproducts.xhtml" class="dropdown-toggle">CATALOG</p:link>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <div class="mega-menu-content">
@@ -309,7 +309,7 @@
                                                 <label class="checkbox">
                                                     <input type="checkbox" name="checkbox" checked="" />
                                                     <i></i>
-                                                    Clothes
+                                                    Gadgets
                                                     <small><a href="#">(23)</a></small>
                                                 </label>
                                             </li>
@@ -317,7 +317,7 @@
                                                 <label class="checkbox">
                                                     <input type="checkbox" name="checkbox" checked="" />
                                                     <i></i>
-                                                    Glasses
+                                                    Software
                                                     <small><a href="#">(4)</a></small>
                                                 </label>
                                             </li>
@@ -325,7 +325,7 @@
                                                 <label class="checkbox">
                                                     <input type="checkbox" name="checkbox" />
                                                     <i></i>
-                                                    Shoes
+                                                    Accessories
                                                     <small><a href="#">(11)</a></small>
                                                 </label>
                                             </li>
@@ -439,7 +439,7 @@
                                                 pageLinks="4" rows="9" paginator="true" paginatorPosition="bottom" 
                                                 paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" >
                                         <div class="product-img product-img-brd">
-                                            <p:commandLink update=":form:pro" oncomplete="PF('productOP').show()"  title="Quick review">
+                                            <p:commandLink action="#{searchProduct.clickedProduct()}" title="Full review">
                                                 <f:setPropertyActionListener value="#{product}" target="#{displayProductMB.selectedProduct}"/>
                                                 <h:graphicImage name="#{product.proPic}" library="images" class="full-width img-responsive"/>
                                             </p:commandLink>
@@ -608,8 +608,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <p>
-                                    2018 &copy; Terrence Takunda Munyunguma. ALL Rights Reserved.<br/>
-                                    Developed by <a href="https://www.linkedin.com/in/terrence-munyunguma-7a95a191/" target="blank">Terrence Takunda Munyunguma</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                                    2018 &copy; <a href="https://www.linkedin.com/in/terrence-munyunguma-7a95a191/" target="blank">Terrence Takunda Munyunguma</a>. ALL Rights Reserved.<br/>
+                                    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
                                 </p>
                             </div>
                             <div class="col-md-6">
