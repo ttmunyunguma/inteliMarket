@@ -44,7 +44,7 @@ public class SendPayment implements Serializable {
     private ISO87APackager packager;
     private ASCIIChannel channel;
     private ISOMUX mux;
-    static String HOST = "127.0.0.1";
+    static String HOST = "10.70.94.34";
     static int PORT = 1990;
     static int TIMEOUT = 30000;
     

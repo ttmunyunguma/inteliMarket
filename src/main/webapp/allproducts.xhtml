@@ -439,7 +439,7 @@
                                                 pageLinks="4" rows="9" paginator="true" paginatorPosition="bottom" 
                                                 paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" >
                                         <div class="product-img product-img-brd">
-                                            <p:commandLink action="#{searchProduct.clickedProduct()}" title="Full review">
+                                            <p:commandLink action="#{searchProduct.clickedProduct()}"  title="Full review">
                                                 <f:setPropertyActionListener value="#{product}" target="#{displayProductMB.selectedProduct}"/>
                                                 <h:graphicImage name="#{product.proPic}" library="images" class="full-width img-responsive"/>
                                             </p:commandLink>
